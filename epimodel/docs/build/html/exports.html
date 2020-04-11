@@ -164,12 +164,146 @@
 <dt id="epimodel.exports.epidemics_org.WebExport">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.exports.epidemics_org.</code><code class="sig-name descname">WebExport</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExport" title="Permalink to this definition">¶</a></dt>
 <dd><p>Document holding one data export to web. Contains a subset of Regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>created</strong> (<em>datetime.datetime</em>) – Set to the current UTC time</p></li>
+<li><p><strong>created_by</strong> (<em>str</em>) – Set to <code class="docutils literal notranslate"><span class="pre">{getpass.getuser()}&#64;{socket.gethostname()}</span></code></p></li>
+<li><p><strong>comment</strong> (<em>str</em>) – An optional comment (default: <cite>None</cite>)</p></li>
+<li><p><strong>export_regions</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExportRegion" title="epimodel.exports.epidemics_org.WebExportRegion"><em>epimodel.exports.epidemics_org.WebExportRegion</em></a><em>]</em>) – The Regions to export</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>comment</strong> (<em>str, optional</em>) – An optional comment (default: <cite>None</cite>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="epimodel.exports.epidemics_org.WebExport.new_region">
+<code class="sig-name descname">new_region</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExport.new_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a region to the <cite>WebExport</cite>, and returns the region as a
+<cite>WebExportRegion</cite> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>region</strong> (<em>epimodel.regions.Region</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>epimodel.exports.epidemics_org.WebExportRegion</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.exports.epidemics_org.WebExport.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExport.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts all regions in <cite>self.export_regions</cite> to JSON and returns a
+<cite>dict</cite> containing <cite>WebExport</cite> data.</p>
+<p>Returns a dict with the following structure</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">created</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;created_by&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">created_by</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">comment</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;regions&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">regions</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>&lt;regions&gt;: A dict mapping region codes to JSON-encoded WebExportRegion data (<code class="docutils literal notranslate"><span class="pre">WebExportRegion.to_JSON()</span></code>)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.exports.epidemics_org.WebExport.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExport.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes regions added to the object to JSON files in a specified
+directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path of directory containing the export directory</p></li>
+<li><p><strong>name</strong> (<em>str, optional</em>) – Name of export directory to create (if None, a name will be
+generated based on creation time of the <cite>WebExport</cite> object)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="epimodel.exports.epidemics_org.WebExportRegion">
+<em class="property">class </em><code class="sig-prename descclassname">epimodel.exports.epidemics_org.</code><code class="sig-name descname">WebExportRegion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExportRegion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores region data for web export.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<a class="reference internal" href="regions.html#epimodel.regions.Region" title="epimodel.regions.Region"><em>epimodel.regions.Region</em></a>) – </p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – {name: anything}
+Any per-region data. Large ones should go to data_ext.</p></li>
+<li><p><strong>data_ext</strong> (<em>dict</em>) – {name: anything}
+Extended data to be written in a separate per-region file</p></li>
+<li><p><strong>data_url</strong> (<em>string</em>) – Relative URL of the extended data file, set on write</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>region</strong> (<em>epimodel.regions.Region</em>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="epimodel.exports.epidemics_org.WebExportRegion.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExportRegion.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts <cite>WebExportRegion</cite> to a JSON-friendly dict.</p>
+<p>Returns a dict with the following structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;data_url&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">data_url</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">DisplayName</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s2">&quot;Population&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">Population</span><span class="o">&gt;</span>
+    <span class="s2">&quot;Lat&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;Lon&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;OfficialName&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;Level&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;M49Code&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;ContinentCode&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;SubregionCode&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;CountryCode&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;CountryCodeISOa3&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="s2">&quot;SubdivisionCode&quot;</span><span class="p">,</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="epimodel.exports.epidemics_org.types_to_json">
+<code class="sig-prename descclassname">epimodel.exports.epidemics_org.</code><code class="sig-name descname">types_to_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.types_to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert object to a JSON friendly type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>object</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>object</em></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If object is unserializable</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="epimodel.exports.epidemics_org.upload_export">
 <code class="sig-prename descclassname">epimodel.exports.epidemics_org.</code><code class="sig-name descname">upload_export</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_to_export</span></em>, <em class="sig-param"><span class="n">gs_prefix</span></em>, <em class="sig-param"><span class="n">gs_url</span></em>, <em class="sig-param"><span class="n">channel</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.upload_export" title="Permalink to this definition">¶</a></dt>
-<dd><p>The ‘upload’ subcommand</p>
+<dd><p>The ‘upload’ subcommand (uploads to Google Cloud Storage)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_to_export</strong> (<em>str</em>) – The local directory to upload</p></li>
+<li><p><strong>gs_prefix</strong> (<em>str</em>) – Google Cloud Storage directory prefix</p></li>
+<li><p><strong>gs_url</strong> (<em>str</em>) – Google Cloud Storage URL</p></li>
+<li><p><strong>channel</strong> (<em>str, optional</em>) – Channel to upload to (default: “test”)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

@@ -46,7 +46,26 @@ def calculations(pa):
 
 
 def import_foretold(rds: RegionDataset, foretold_channel: str):
+    """
+    Imports data from foretold.io into a pandas DataFrame.
 
+    Parameters
+    ----------
+    rds
+        The RegionDataset to get region data from
+    foretold_channel
+        The foretold channel ID (UUID)
+
+    Returns
+    -------
+    pandas.DataFrame
+        Columns:
+            - Name: Code
+            - Name: Date
+            - Name: Mean
+            - Name: Variance
+            - Quantile columns (names ``0.01``, ``0.02`` ... ``1.00``)
+    """
     skipped = set()
     not_found = set()
     conflicts = set()
@@ -97,7 +116,7 @@ def fetch_foretold(channel_id: str) -> bytes:
     """Fetch the data from foretold.io.
 
     :param channel_id: Channel id (UUID)
-    :param output_path: If set, writes into the path.
+    :param output_path: If set, writes into the path. (not implemented)
     :returns: None if written to a file; parsed JSON if output_path not set.
     """
     if not channel_id:

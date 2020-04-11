@@ -162,6 +162,32 @@
 <h1>Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)<a class="headerlink" href="#imports-epimodel-imports" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-epimodel.imports.countermeasures">
 <span id="countermeasures-epimodel-imports-countermeasures"></span><h2>Countermeasures (<code class="docutils literal notranslate"><span class="pre">epimodel.imports.countermeasures</span></code>)<a class="headerlink" href="#module-epimodel.imports.countermeasures" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="epimodel.imports.countermeasures.import_countermeasures_csv">
+<code class="sig-prename descclassname">epimodel.imports.countermeasures.</code><code class="sig-name descname">import_countermeasures_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rds</span><span class="p">:</span> <span class="n"><a class="reference internal" href="regions.html#epimodel.regions.RegionDataset" title="epimodel.regions.RegionDataset">epimodel.regions.RegionDataset</a></span></em>, <em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.imports.countermeasures.import_countermeasures_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports countermeasures data from a csv file (e.g.
+<a class="reference external" href="https://github.com/epidemics/epimodel-covid-data/blob/master/sources/simplified_countermeasures_2020_03_28.csv">https://github.com/epidemics/epimodel-covid-data/blob/master/sources/simplified_countermeasures_2020_03_28.csv</a>)
+into a pandas DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rds</strong> (<em>epimodel.regions.RegionDataset</em>) – RegionDataset to process region names</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Path to the CSV file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>pandas.DataFrame</em> –</p>
+<dl class="simple">
+<dt>Index:</dt><dd><p>MultiIndex (code, date)</p>
+</dd>
+<dt>Columns:</dt><dd><p>Countermeasure columns from the CSV</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="section" id="module-epimodel.imports.foretold">
 <span id="foretold-epimodel-imports-foretold"></span><h2>Foretold (<code class="docutils literal notranslate"><span class="pre">epimodel.imports.foretold</span></code>)<a class="headerlink" href="#module-epimodel.imports.foretold" title="Permalink to this headline">¶</a></h2>
@@ -173,11 +199,39 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>channel_id</strong> – Channel id (UUID)</p></li>
-<li><p><strong>output_path</strong> – If set, writes into the path.</p></li>
+<li><p><strong>output_path</strong> – If set, writes into the path. (not implemented)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None if written to a file; parsed JSON if output_path not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="epimodel.imports.foretold.import_foretold">
+<code class="sig-prename descclassname">epimodel.imports.foretold.</code><code class="sig-name descname">import_foretold</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rds</span><span class="p">:</span> <span class="n"><a class="reference internal" href="regions.html#epimodel.regions.RegionDataset" title="epimodel.regions.RegionDataset">epimodel.regions.RegionDataset</a></span></em>, <em class="sig-param"><span class="n">foretold_channel</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.imports.foretold.import_foretold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports data from foretold.io into a pandas DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rds</strong> – The RegionDataset to get region data from</p></li>
+<li><p><strong>foretold_channel</strong> – The foretold channel ID (UUID)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>pandas.DataFrame</em> –</p>
+<dl class="simple">
+<dt>Columns:</dt><dd><ul class="simple">
+<li><p>Name: Code</p></li>
+<li><p>Name: Date</p></li>
+<li><p>Name: Mean</p></li>
+<li><p>Name: Variance</p></li>
+<li><p>Quantile columns (names <code class="docutils literal notranslate"><span class="pre">0.01</span></code>, <code class="docutils literal notranslate"><span class="pre">0.02</span></code> … <code class="docutils literal notranslate"><span class="pre">1.00</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -188,8 +242,32 @@
 <dl class="py function">
 <dt id="epimodel.imports.johns_hopkins.import_johns_hopkins">
 <code class="sig-prename descclassname">epimodel.imports.johns_hopkins.</code><code class="sig-name descname">import_johns_hopkins</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rds</span><span class="p">:</span> <span class="n"><a class="reference internal" href="regions.html#epimodel.regions.RegionDataset" title="epimodel.regions.RegionDataset">epimodel.regions.RegionDataset</a></span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.imports.johns_hopkins.import_johns_hopkins" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read a DataFrame of John Hopkins data from given directory or URL.</p>
+<dd><p>Read a DataFrame of Johns Hopkins data from given directory or URL.</p>
 <p>By default loads data from CSSE github.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rds</strong> (<em>epimodel.regions.RegionDataset</em>) – RegionDataset to process region names</p></li>
+<li><p><strong>prefix</strong> (<em>str, optional</em>) – Path to the directory containing Johns Hopkins CSV files. If <cite>None</cite>, then the following prefix will be used:
+<a class="reference external" href="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/">https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/</a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>pandas.DataFrame</em> –</p>
+<dl class="simple">
+<dt>Index:</dt><dd><p>MultiIndex (Code, date)</p>
+</dd>
+<dt>Columns:</dt><dd><ul class="simple">
+<li><p>Name: Recovered (<cite>NaN</cite> for US states)</p></li>
+<li><p>Name: Confirmed</p></li>
+<li><p>Name: Deaths</p></li>
+<li><p>Name: Active (<cite>NaN</cite> for US states)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
