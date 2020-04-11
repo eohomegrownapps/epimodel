@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Handling GLEAMViz records (epimodel.gleam) &mdash; epimodel  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="One-Shots (epimodel.oneshots)" href="one-shots.html" />
+    <link rel="prev" title="Exports (epimodel.exports)" href="exports.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> epimodel
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exports.html">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Handling GLEAMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-epimodel.gleam.batch">Batch (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam.batch</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">epimodel</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Handling GLEAMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gleam.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="handling-gleamviz-records-epimodel-gleam">
+<h1>Handling GLEAMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)<a class="headerlink" href="#handling-gleamviz-records-epimodel-gleam" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-epimodel.gleam.batch">
+<span id="batch-epimodel-gleam-batch"></span><h2>Batch (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam.batch</span></code>)<a class="headerlink" href="#module-epimodel.gleam.batch" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="epimodel.gleam.batch.Batch">
+<em class="property">class </em><code class="sig-prename descclassname">epimodel.gleam.batch.</code><code class="sig-name descname">Batch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hdf_file</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">_direct</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.gleam.batch.Batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents one batch of GLEAM simulations.</p>
+<p>Batch metadata is held in a HDF5 file with pandas tables:</p>
+<ul class="simple">
+<li><p><cite>simulations</cite> - each row is a simulation definition</p></li>
+<li><p><cite>new_fraction</cite> - fraction of the population that transitioned to given
+compartment (columns) in the period ending on the date since the last
+(e.g. daily new fraction, weekly new fraction, …).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdf</strong> (<em>pandas.HDFStore</em>) – The HDF5 file containing batch metadata</p></li>
+<li><p><strong>simulations</strong> (<em>pandas.DataFrame</em>) – <p>Each row is a simulation definition.</p>
+<dl class="simple">
+<dt>Columns:</dt><dd><ul>
+<li><p>Name: Name</p></li>
+<li><p>Name: Group</p></li>
+<li><p>Name: Key</p></li>
+<li><p>Name: Params</p></li>
+<li><p>Name: DefinitionXML</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>new_fraction</strong> (<em>pandas.DataFrame</em>) – <p>Fraction of the population that transitioned to given compartment
+(columns) in the period ending on the date since the last (e.g. daily
+new fraction, weekly new fraction, …).</p>
+<dl class="simple">
+<dt>Index:</dt><dd><p>MultiIndex (Code, Date, SimulationID)</p>
+</dd>
+<dt>Columns:</dt><dd><ul>
+<li><p>Name: Infected</p></li>
+<li><p>Name: Recovered</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="epimodel.gleam.batch.Batch.import_sims">
+<code class="sig-name descname">import_sims</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sims_dir</span></em>, <em class="sig-param"><span class="n">regions</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">allow_unfinished</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">resample</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.gleam.batch.Batch.import_sims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import simulation result data from GLEAMViz data/sims dir into the HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sims_dir</strong> (<em>str</em>) – The data/sims directory to import from</p></li>
+<li><p><strong>regions</strong> (<em>epimodel.regions.RegionDataset</em>)</p></li>
+<li><p><strong>allow_unfinished</strong> (<em>bool, optional</em>) – Allow unfinished GLEAMViz experiments (default: <cite>False</cite>) (?)</p></li>
+<li><p><strong>resample</strong> (<em>DateOffset, Timedelta or str, optional</em>) – Rule for resampling the GLEAMViz time-series data (see Pandas <cite>df.resample</cite>) (default: None)</p></li>
+<li><p><strong>overwrite</strong> (<em>bool, optional</em>) – Overwrite existing <cite>new_fraction</cite> table (default: <cite>False</cite>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.gleam.batch.Batch.new">
+<em class="property">classmethod </em><code class="sig-name descname">new</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">suffix</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.gleam.batch.Batch.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new batch, auto-naming it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_</strong> (<em>str</em>) – The directory to write the batch <code class="docutils literal notranslate"><span class="pre">hdf5</span></code> file to</p></li>
+<li><p><strong>name</strong> (<em>str, optional</em>) – The name of the batch <code class="docutils literal notranslate"><span class="pre">hdf5</span></code> file to create (if <cite>None</cite>, a
+name will be generated based on the current time)</p></li>
+<li><p><strong>suffix</strong> (<em>str, optional</em>) – If a name is not specified, this suffix will be appended to the
+generated batch name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>epimodel.gleam.batch.Batch</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.gleam.batch.Batch.open">
+<em class="property">classmethod </em><code class="sig-name descname">open</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.gleam.batch.Batch.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open batch from path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>epimodel.gleam.batch.Batch</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="one-shots.html" class="btn btn-neutral float-right" title="One-Shots (epimodel.oneshots)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="exports.html" class="btn btn-neutral float-left" title="Exports (epimodel.exports)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tomas Gavenciak
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

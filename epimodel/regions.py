@@ -1,3 +1,11 @@
+"""Region database (continents, countries, provinces, GLEAM basins) - codes, names, basic stats, tree structure (TODO).
+
+This module loads region data in the format of
+https://github.com/epidemics/epimodel-covid-data/blob/master/regions.csv.
+Each region has an ISO-based code (as detailed in :class:`.RegionDataset`);
+all datasets are organized by those codes (as a row index).
+"""
+
 import datetime
 import enum
 import logging
@@ -18,9 +26,15 @@ log = logging.getLogger(__name__)
 
 class Level(enum.Enum):
     """
-    Region levels in the dataset. The numbers are NOT canonical, only the names are.
-
-    Ordered by "size" - world is the largest.
+    Region levels in the dataset. The numbers are NOT canonical, only the
+    names are. These are ordered by "size". From smallest to largest, these are:
+    
+    - ``Level.gleam_basin``
+    - ``Level.subdivision``
+    - ``Level.country``
+    - ``Level.subregion``
+    - ``Level.continent``
+    - ``Level.world``
     """
 
     gleam_basin = 1
@@ -52,6 +66,34 @@ class Level(enum.Enum):
 
 
 class Region:
+    """
+    A region in the :class:`.RegionDataset`.
+
+    Parameters
+    ----------
+    rds : epimodel.regions.RegionDataset
+        The RegionDataset from which to initialise this region
+    code : str
+        The unique code identifying this region.
+
+    Attributes
+    ----------
+    Code : str
+        A unique code identifying this region (the code for this region at the smallest available region level).
+    continent : str
+        The prefixed ISO continent code for this region (or None if not applicable)
+    subregion : str
+        TBD: The subregion code for this region (or None if not applicable)
+    country : str
+        The ISOa2 country code for this region (or None if not applicable)
+    subdivision : str
+        The ISO 3166-2 state/province code for this region (or None if not applicable)
+    parent : epimodel.regions.Region
+        The region one level above enclosing this region (or None if not applicable)
+    children : Set[epimodel.regions.Region]
+        The regions one level below enclosed by this region (empty if not applicable)
+    """
+    
     def __init__(self, rds, code):
         self._rds = weakref.ref(rds)
         self._code = code
@@ -67,6 +109,13 @@ class Region:
         rds.data.at[code, "DisplayName"] = self.get_display_name()
 
     def get_display_name(self):
+        """
+        Get the display name of the region.
+
+        Returns
+        -------
+        str
+        """
         if self.Level == Level.subdivision:
             return f"{self.Name}, {self.CountryCode}"
         if self.Level == Level.gleam_basin:
@@ -104,7 +153,7 @@ class Region:
         return self._children
 
     def _region_prop(self, name):
-        """Return the Region corresponding to code in `self[name]` (None if that is None)."""
+        """Returns the Region corresponding to code in `self[name]` (None if that is None)."""
         rds = self._rds()
         assert rds is not None
         cid = rds.data.at[self._code, name]
@@ -131,15 +180,45 @@ class Region:
 
 class RegionDataset:
     """
-    A set of regions and their attributes, with a hierarchy. A common index for most data files.
+    A set of regions and their attributes, with a hierarchy. A common index
+    for most data files.
 
-    The Id is:
-    W     - The world, root node, Level="world"
-    W-AS  - Prefixed ISO continent code, Level="continent"
-    (TBD) - Subregion code, Level="subregion"
-    US    - ISOa2 code, Level="country"
-    US-CA - ISO 3166-2 state/province code, Level="subdivision"
-    G-AAA - Prefixed IANA code, used for GLEAM basins, Level="gleam_basin"
+    Notes
+    -----
+    Codes are defined as follows:
+    
+    - ``W``: The world, root node, Level="world"
+    - ``W-AS``: Prefixed ISO continent code, Level="continent"
+    - (TBD): Subregion code, Level="subregion"
+    - ``US``: ISOa2 code, Level="country"
+    - ``US-CA``: ISO 3166-2 state/province code, Level="subdivision"
+    - ``G-AAA``: Prefixed IANA code, used for GLEAM basins, Level="gleam_basin"
+    
+    Attributes
+    ----------
+    regions : Iterator[epimodel.regions.Region]
+        All regions contained in the RegionDataset
+    data : pandas.DataFrame
+        Index:
+            Unique region code
+        Columns:
+            - Name: Name, dtype: object
+            - Name: OfficialName, dtype: object
+            - Name: OtherNames, dtype: object
+            - Name: Level, dtype: object
+            - Name: M49Code, dtype: object
+            - Name: ContinentCode, dtype: object
+            - Name: SubregionCode, dtype: object
+            - Name: CountryCode, dtype: object
+            - Name: CountryCodeISOa3, dtype: object
+            - Name: SubdivisionCode, dtype: object
+            - Name: Lat, dtype: float32
+            - Name: Lon, dtype: float32
+            - Name: Population, dtype: float32
+            - Name: GleamID, dtype: object
+            - Name: AllNames, dtype: object
+            - Name: Region, dtype: object
+            - Name: DisplayName, dtype: object
     """
 
     # Separating names in name list and column name from date
@@ -175,9 +254,6 @@ class RegionDataset:
     )
 
     def __init__(self):
-        """
-        Creates an empty region set. Use `RegionDataset.load` to create from CSV.
-        """
         # Main DataFrame (empty)
         self.data = pd.DataFrame(
             index=pd.Index([], name="Code", dtype=pd.StringDtype())
@@ -192,9 +268,19 @@ class RegionDataset:
     @classmethod
     def load(cls, *paths):
         """
-        Create a RegionDataset and its Regions from the given CSV.
+        Creates a RegionDataset and its Regions from the given CSV.
 
-        Optionally also loads other CSVs with additional regions (e.g. GLEAM regions)
+        Optionally also loads other CSVs with additional regions (e.g. GLEAM
+        regions)
+        
+        Parameters
+        ----------
+        *paths 
+            Variable length argument list of CSV paths to load.
+
+        Returns
+        -------
+        epimodel.regions.RegionDataset
         """
         s = cls()
         cols = dict(cls.COLUMN_TYPES, Level="U")
@@ -222,12 +308,37 @@ class RegionDataset:
     def __getitem__(self, code):
         """
         Returns the Region corresponding to code, or raise KeyError.
+        
+        Parameters
+        ----------
+        code : str
+            The code to lookup
+
+        Returns
+        -------
+        epimodel.regions.Region
+
+        Raises
+        ------
+        KeyError
+            - If region not found
         """
         return self._code_index[code.upper()]
 
     def get(self, code, default=None):
         """
-        Returns the Region corresponding to code, or `default`.
+        Returns the Region corresponding to a given code, or `default`.
+
+        Parameters
+        ----------
+        code : str
+            The code to lookup (e.g. GB)
+        default : str, optional
+            The Region to return if no such Region is found.
+        
+        Returns
+        -------
+        epimodel.regions.Region
         """
         try:
             return self[code]
@@ -236,7 +347,18 @@ class RegionDataset:
 
     def find_all_by_name(self, s, levels=None):
         """
-        Return all Regions with some matching names (filtering on levels).
+        Returns all Regions with some matching names (filtering on levels).
+        
+        Parameters
+        ----------
+        s : str
+            The name to lookup (e.g. Australia)
+        levels : List[epimodel.regions.Level]
+            The levels to filter by. Only Regions within the given levels will be returned.
+        
+        Returns
+        -------
+        Tuple[epimodel.regions.Region]
         """
         if levels is not None:
             if isinstance(levels, Level):
@@ -250,8 +372,22 @@ class RegionDataset:
     def find_one_by_name(self, s, levels=None):
         """
         Find one region matching name (filter on levels).
-     
-        Raises KeyError if no or multiple regions found.
+        
+        Parameters
+        ----------
+        s : str
+            The name to lookup (e.g. Australia)
+        levels : List[epimodel.regions.Level]
+            The levels to filter by. Only Regions within the given levels will be returned.
+
+        Returns
+        -------
+        epimodel.regions.Region
+
+        Raises
+        ------
+        KeyError
+            - If no or multiple regions found.
         """
         rs = self.find_all_by_name(s, levels=levels)
         if len(rs) == 1:
@@ -262,6 +398,14 @@ class RegionDataset:
         raise KeyError(f"Found multiple regions matching {s!r}{lcmt}: {rs!r}")
 
     def write_csv(self, path):
+        """
+        Exports the RegionDataset to CSV.
+
+        Parameters
+        ----------
+        path : str
+            The path to save the CSV to
+        """
         # Reconstruct the OtherNames column
         for r in self.regions:
             names = set(r.AllNames)

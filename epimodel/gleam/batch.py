@@ -16,10 +16,35 @@ class Batch:
     Represents one batch of GLEAM simulations.
 
     Batch metadata is held in a HDF5 file with pandas tables:
-    * simulations - each row is a simulation definition
-    * new_fraction - fraction of the population that transitioned
-        to given compartment (columns) in the period ending on the date
-        since the last (e.g. daily new fracion, weekly new fraction, ...).
+    
+    * `simulations` - each row is a simulation definition
+    * `new_fraction` - fraction of the population that transitioned to given
+      compartment (columns) in the period ending on the date since the last
+      (e.g. daily new fraction, weekly new fraction, ...).
+
+    Attributes
+    ----------
+    hdf : pandas.HDFStore
+        The HDF5 file containing batch metadata
+    simulations : pandas.DataFrame
+        Each row is a simulation definition.
+        
+        Columns:
+            - Name: Name
+            - Name: Group
+            - Name: Key
+            - Name: Params
+            - Name: DefinitionXML
+    new_fraction : pandas.DataFrame
+        Fraction of the population that transitioned to given compartment 
+        (columns) in the period ending on the date since the last (e.g. daily 
+        new fraction, weekly new fraction, ...).
+        
+        Index:
+            MultiIndex (Code, Date, SimulationID)
+        Columns:
+            - Name: Infected
+            - Name: Recovered
     """
 
     SIMULATION_COLUMNS = ["Name", "Group", "Key", "Params", "DefinitionXML"]
@@ -41,6 +66,17 @@ class Batch:
 
     @classmethod
     def open(cls, path):
+        """
+        Open batch from path.
+        
+        Parameters
+        ----------
+        path : str
+
+        Returns
+        -------
+        epimodel.gleam.batch.Batch
+        """
         path = Path(path)
         assert path.exists()
         hdf = pd.HDFStore(path, "a")
@@ -49,7 +85,22 @@ class Batch:
     @classmethod
     def new(cls, dir_, name=None, suffix=None):
         """
-        Create new batch, auto-naming it.
+        Create a new batch, auto-naming it.
+
+        Parameters
+        ----------
+        dir_ : str
+            The directory to write the batch ``hdf5`` file to
+        name : str, optional
+            The name of the batch ``hdf5`` file to create (if `None`, a 
+            name will be generated based on the current time)
+        suffix : str, optional
+            If a name is not specified, this suffix will be appended to the 
+            generated batch name.
+
+        Returns
+        -------
+        epimodel.gleam.batch.Batch
         """
         if name is None:
             now = datetime.datetime.now().astimezone()
@@ -77,6 +128,18 @@ class Batch:
     ):
         """
         Import simulation result data from GLEAMViz data/sims dir into the HDF5 file.
+
+        Parameters
+        ----------
+        sims_dir : str
+            The data/sims directory to import from
+        regions : epimodel.regions.RegionDataset
+        allow_unfinished : bool, optional
+            Allow unfinished GLEAMViz experiments (default: `False`) (?)
+        resample : DateOffset, Timedelta or str, optional
+            Rule for resampling the GLEAMViz time-series data (see Pandas `df.resample`) (default: None)
+        overwrite : bool, optional
+            Overwrite existing `new_fraction` table (default: `False`)
         """
         if len(self.new_fraction) > 0 and not overwrite:
             raise Exception(f"Would overwrite existing `new_fraction` in {self}!")
