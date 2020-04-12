@@ -33,12 +33,15 @@ extensions = [
 'sphinx.ext.coverage',
 'sphinx.ext.napoleon',
 "sphinx_rtd_theme",
+'autodocsumm',
 ]
 napoleon_numpy_docstring = True
 napoleon_use_param = False
 napoleon_use_rtype = False
 napoleon_use_ivar = True
-
+autodoc_default_options = {
+    'autosummary': True,
+}
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -55,6 +58,9 @@ exclude_patterns = []
 #
 #html_theme = 'alabaster'
 html_theme = "sphinx_rtd_theme"
+html_theme_options = {
+    'navigation_depth': 4,
+}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".

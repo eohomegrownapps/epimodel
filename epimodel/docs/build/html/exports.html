@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Handling GLEAMViz records (epimodel.gleam)" href="gleam.html" />
+    <link rel="next" title="Handling GLEaMViz records (epimodel.gleam)" href="gleam.html" />
     <link rel="prev" title="Imports (epimodel.imports)" href="imports.html" /> 
 </head>
 
@@ -82,16 +82,21 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-epimodel.exports.epidemics_org">Epidemics (<code class="docutils literal notranslate"><span class="pre">epimodel.exports.epidemics_org</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling with Epimodel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Epimodel Data Sources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Epimodel Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="models.html">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-epimodel.exports.epidemics_org">Epidemics (<code class="docutils literal notranslate"><span class="pre">epimodel.exports.epidemics_org</span></code>)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gleam.html">Handling GLEAMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gleam.html">Handling GLEaMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -137,6 +142,8 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="reference.html">Epimodel Reference</a> &raquo;</li>
+        
       <li>Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</li>
     
     
@@ -160,6 +167,36 @@
 <h1>Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)<a class="headerlink" href="#exports-epimodel-exports" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-epimodel.exports.epidemics_org">
 <span id="epidemics-epimodel-exports-epidemics-org"></span><h2>Epidemics (<code class="docutils literal notranslate"><span class="pre">epimodel.exports.epidemics_org</span></code>)<a class="headerlink" href="#module-epimodel.exports.epidemics_org" title="Permalink to this headline">¶</a></h2>
+<p><strong>Classes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExport" title="epimodel.exports.epidemics_org.WebExport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WebExport</span></code></a>([comment])</p></td>
+<td><p>Document holding one data export to web.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExportRegion" title="epimodel.exports.epidemics_org.WebExportRegion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WebExportRegion</span></code></a>(region)</p></td>
+<td><p>Stores region data for web export.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.types_to_json" title="epimodel.exports.epidemics_org.types_to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types_to_json</span></code></a>(obj)</p></td>
+<td><p>Convert object to a JSON friendly type</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.upload_export" title="epimodel.exports.epidemics_org.upload_export"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload_export</span></code></a>(dir_to_export, gs_prefix, gs_url)</p></td>
+<td><p>The ‘upload’ subcommand (uploads to Google Cloud Storage)</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt id="epimodel.exports.epidemics_org.WebExport">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.exports.epidemics_org.</code><code class="sig-name descname">WebExport</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExport" title="Permalink to this definition">¶</a></dt>
@@ -177,6 +214,24 @@
 <dd class="field-even"><p><strong>comment</strong> (<em>str, optional</em>) – An optional comment (default: <cite>None</cite>)</p>
 </dd>
 </dl>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExport.new_region" title="epimodel.exports.epidemics_org.WebExport.new_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">new_region</span></code></a>(region)</p></td>
+<td><p>Adds a region to the <cite>WebExport</cite>, and returns the region as a <cite>WebExportRegion</cite> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExport.to_json" title="epimodel.exports.epidemics_org.WebExport.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>()</p></td>
+<td><p>Converts all regions in <cite>self.export_regions</cite> to JSON and returns a <cite>dict</cite> containing <cite>WebExport</cite> data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExport.write" title="epimodel.exports.epidemics_org.WebExport.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code></a>(path[, name])</p></td>
+<td><p>Writes regions added to the object to JSON files in a specified directory.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt id="epimodel.exports.epidemics_org.WebExport.new_region">
 <code class="sig-name descname">new_region</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExport.new_region" title="Permalink to this definition">¶</a></dt>
@@ -246,6 +301,18 @@ Extended data to be written in a separate per-region file</p></li>
 <dd class="field-even"><p><strong>region</strong> (<em>epimodel.regions.Region</em>)</p>
 </dd>
 </dl>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.exports.epidemics_org.WebExportRegion.to_json" title="epimodel.exports.epidemics_org.WebExportRegion.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>()</p></td>
+<td><p>Converts <cite>WebExportRegion</cite> to a JSON-friendly dict.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt id="epimodel.exports.epidemics_org.WebExportRegion.to_json">
 <code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.exports.epidemics_org.WebExportRegion.to_json" title="Permalink to this definition">¶</a></dt>
@@ -317,7 +384,7 @@ Extended data to be written in a separate per-region file</p></li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gleam.html" class="btn btn-neutral float-right" title="Handling GLEAMViz records (epimodel.gleam)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="gleam.html" class="btn btn-neutral float-right" title="Handling GLEaMViz records (epimodel.gleam)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="imports.html" class="btn btn-neutral float-left" title="Imports (epimodel.imports)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

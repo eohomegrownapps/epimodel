@@ -81,13 +81,18 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exports.html">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gleam.html">Handling GLEAMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling with Epimodel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Epimodel Data Sources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Epimodel Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="models.html">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exports.html">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gleam.html">Handling GLEaMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -133,6 +138,8 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="reference.html">Epimodel Reference</a> &raquo;</li>
+        
       <li>Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</li>
     
     
@@ -154,6 +161,24 @@
             
   <div class="section" id="module-epimodel.utils">
 <span id="utils-epimodel-utils"></span><h1>Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)<a class="headerlink" href="#module-epimodel.utils" title="Permalink to this headline">¶</a></h1>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.utils.normalize_name" title="epimodel.utils.normalize_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_name</span></code></a>(name)</p></td>
+<td><p>Return normalized version of the name for matching region names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.utils.read_csv" title="epimodel.utils.read_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_csv</span></code></a>(path[, regions, date_column, …])</p></td>
+<td><p>Read given CSV and do some basic checks and create indexes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.utils.write_csv" title="epimodel.utils.write_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_csv</span></code></a>(df, path[, regions, with_name])</p></td>
+<td><p>Write given CSV normally from a <cite>DataFrame</cite>, adding purely informative “_Name” column by default.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt id="epimodel.utils.normalize_name">
 <code class="sig-prename descclassname">epimodel.utils.</code><code class="sig-name descname">normalize_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.utils.normalize_name" title="Permalink to this definition">¶</a></dt>

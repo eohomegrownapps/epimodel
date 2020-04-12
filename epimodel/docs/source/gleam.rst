@@ -1,4 +1,4 @@
-Handling GLEAMViz records (``epimodel.gleam``)
+Handling GLEaMViz records (``epimodel.gleam``)
 ==============================================
 
 Batch (``epimodel.gleam.batch``)

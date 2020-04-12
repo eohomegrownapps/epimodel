@@ -1,19 +1,13 @@
-Welcome to epimodel's documentation!
+Epimodel Documentation
 ====================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   models
-   imports
-   exports
-   gleam
-   one-shots
-   regions
-   utils
-
-
+   modelling
+   data
+   reference
 
 Indices and tables
 ==================

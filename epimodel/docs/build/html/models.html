@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Imports (epimodel.imports)" href="imports.html" />
-    <link rel="prev" title="Welcome to epimodel’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Epimodel Reference" href="reference.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,21 +82,26 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#countermeasures-epimodel-pymc3-models-cm-effect">Countermeasures (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect</span></code>)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-epimodel.pymc3_models.cm_effect.loader">Loader (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.loader</span></code>)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-epimodel.pymc3_models.cm_effect.models">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.models</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling with Epimodel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Epimodel Data Sources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Epimodel Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#countermeasures-epimodel-pymc3-models-cm-effect">Countermeasures (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect</span></code>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-epimodel.pymc3_models.cm_effect.loader">Loader (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.loader</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-epimodel.pymc3_models.cm_effect.models">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.models</span></code>)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-epimodel.pymc3_models.utils">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-epimodel.pymc3_models.utils">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils</span></code>)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exports.html">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gleam.html">Handling GLEAMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exports.html">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gleam.html">Handling GLEaMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -142,6 +147,8 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="reference.html">Epimodel Reference</a> &raquo;</li>
+        
       <li>Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</li>
     
     
@@ -167,6 +174,18 @@
 <h2>Countermeasures (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect</span></code>)<a class="headerlink" href="#countermeasures-epimodel-pymc3-models-cm-effect" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="module-epimodel.pymc3_models.cm_effect.loader">
 <span id="loader-epimodel-pymc3-models-cm-effect-loader"></span><h3>Loader (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.loader</span></code>)<a class="headerlink" href="#module-epimodel.pymc3_models.cm_effect.loader" title="Permalink to this headline">¶</a></h3>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.split_0to1_features" title="epimodel.pymc3_models.cm_effect.loader.split_0to1_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_0to1_features</span></code></a>(features_0to1[, exclusive])</p></td>
+<td><p>Split joined features in model-0to1 into separate bool features.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt id="epimodel.pymc3_models.cm_effect.loader.split_0to1_features">
 <code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.loader.</code><code class="sig-name descname">split_0to1_features</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">features_0to1</span></em>, <em class="sig-param"><span class="n">exclusive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.split_0to1_features" title="Permalink to this definition">¶</a></dt>
@@ -179,10 +198,52 @@ Resulting DF is returned.</p>
 </div>
 <div class="section" id="module-epimodel.pymc3_models.cm_effect.models">
 <span id="models-epimodel-pymc3-models-cm-effect-models"></span><h3>Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.models</span></code>)<a class="headerlink" href="#module-epimodel.pymc3_models.cm_effect.models" title="Permalink to this headline">¶</a></h3>
+<p><strong>Classes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseCMModel</span></code></a>(data[, model, name])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1" title="epimodel.pymc3_models.cm_effect.models.CMModelV1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMModelV1</span></code></a>(data[, delay_mean])</p></td>
+<td><p>CM effect model V1 (lognormal prior)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1g" title="epimodel.pymc3_models.cm_effect.models.CMModelV1g"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMModelV1g</span></code></a>(data[, delay_mean])</p></td>
+<td><p>CM effect model V1g (exp(-gamma) prior)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2" title="epimodel.pymc3_models.cm_effect.models.CMModelV2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMModelV2</span></code></a>(data[, delay_mean])</p></td>
+<td><p>CM effect model V2 (lognormal prior)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g" title="epimodel.pymc3_models.cm_effect.models.CMModelV2g"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMModelV2g</span></code></a>(data[, delay_mean])</p></td>
+<td><p>CM effect model V2g (exp(-gamma) prior)</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">BaseCMModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Det</span></code></a>(name, exp[, plot_trace])</p></td>
+<td><p>Create a deterministic variable, adding it to self as attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogNorm</span></code></a>(name, mean, log_var[, plot_trace, …])</p></td>
+<td><p>Create a lognorm variable, adding it to self as attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.create_delay_dist" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.create_delay_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_delay_dist</span></code></a>(delay_mean)</p></td>
+<td><p>Generate and return CMDelayProb and CMDelayCut.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det">
 <code class="sig-name descname">Det</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">exp</span></em>, <em class="sig-param"><span class="n">plot_trace</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a deterministic variable, adding it to self as attribute.</p>
@@ -206,6 +267,21 @@ Resulting DF is returned.</p>
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV1">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">CMModelV1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1" title="Permalink to this definition">¶</a></dt>
 <dd><p>CM effect model V1 (lognormal prior)</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1.build" title="epimodel.pymc3_models.cm_effect.models.CMModelV1.build"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build</span></code></a>()</p></td>
+<td><p>Build the model variables.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1.build_reduction_var" title="epimodel.pymc3_models.cm_effect.models.CMModelV1.build_reduction_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_reduction_var</span></code></a>([scale])</p></td>
+<td><p>Less informative prior for CM reduction, allows values &gt;1.0</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV1.build">
 <code class="sig-name descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1.build" title="Permalink to this definition">¶</a></dt>
@@ -224,6 +300,18 @@ Resulting DF is returned.</p>
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV1g">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">CMModelV1g</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1g" title="Permalink to this definition">¶</a></dt>
 <dd><p>CM effect model V1g (exp(-gamma) prior)</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1g.build_reduction_var" title="epimodel.pymc3_models.cm_effect.models.CMModelV1g.build_reduction_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_reduction_var</span></code></a>([alpha, beta])</p></td>
+<td><p>CM reduction prior from ICL paper, only values &lt;=1.0</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV1g.build_reduction_var">
 <code class="sig-name descname">build_reduction_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV1g.build_reduction_var" title="Permalink to this definition">¶</a></dt>
@@ -236,6 +324,21 @@ Resulting DF is returned.</p>
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">CMModelV2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2" title="Permalink to this definition">¶</a></dt>
 <dd><p>CM effect model V2 (lognormal prior)</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build" title="epimodel.pymc3_models.cm_effect.models.CMModelV2.build"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build</span></code></a>()</p></td>
+<td><p>Build the model variables.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build_reduction_var" title="epimodel.pymc3_models.cm_effect.models.CMModelV2.build_reduction_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_reduction_var</span></code></a>([scale])</p></td>
+<td><p>Less informative prior for CM reduction, allows values &gt;1.0</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2.build">
 <code class="sig-name descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build" title="Permalink to this definition">¶</a></dt>
@@ -254,6 +357,18 @@ Resulting DF is returned.</p>
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2g">
 <em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">CMModelV2g</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g" title="Permalink to this definition">¶</a></dt>
 <dd><p>CM effect model V2g (exp(-gamma) prior)</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var" title="epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_reduction_var</span></code></a>([alpha, beta])</p></td>
+<td><p>CM reduction prior from ICL paper, only values &lt;=1.0</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var">
 <code class="sig-name descname">build_reduction_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var" title="Permalink to this definition">¶</a></dt>
@@ -266,11 +381,62 @@ Resulting DF is returned.</p>
 </div>
 <div class="section" id="module-epimodel.pymc3_models.utils">
 <span id="utils-epimodel-pymc3-models-utils"></span><h2>Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils</span></code>)<a class="headerlink" href="#module-epimodel.pymc3_models.utils" title="Permalink to this headline">¶</a></h2>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.array_stats" title="epimodel.pymc3_models.utils.array_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array_stats</span></code></a>(d)</p></td>
+<td><p>Compute the mean, standard deviation and (0.05th, 0.95th) quantiles of an array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.convolution" title="epimodel.pymc3_models.utils.convolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convolution</span></code></a>(t, weights, axis)</p></td>
+<td><p>Computes a linear convolution of tensor by weights.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.geom_convolution" title="epimodel.pymc3_models.utils.geom_convolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geom_convolution</span></code></a>(t, weights, axis)</p></td>
+<td><p>Computes a linear convolution of log(tensor) by weights, returning exp(conv_res).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.shift_right" title="epimodel.pymc3_models.utils.shift_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift_right</span></code></a>(t, dist, axis[, pad])</p></td>
+<td><p>Return the signal shifted right by dist along given axis, padded by <cite>pad</cite>.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt id="epimodel.pymc3_models.utils.array_stats">
+<code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">array_stats</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.array_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the mean, standard deviation and (0.05th, 0.95th) quantiles of an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> (<em>Array of numeric values</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A string with the following format</em> – <code class="docutils literal notranslate"><span class="pre">&lt;mean&gt;</span> <span class="pre">std=&lt;standard</span> <span class="pre">deviation&gt;</span> <span class="pre">(&lt;0.05th</span> <span class="pre">quantile&gt;</span> <span class="pre">..</span> <span class="pre">&lt;0.95th</span> <span class="pre">quantile&gt;)</span></code></p></li>
+<li><p>e.g. <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">std=1.414</span> <span class="pre">(1.2</span> <span class="pre">..</span> <span class="pre">4.8)</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt id="epimodel.pymc3_models.utils.convolution">
 <code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">convolution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">weights</span></em>, <em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.convolution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a linear convolution of tensor by weights.</p>
 <p>The result is res[.., i, ..] = w[0] * res[.., i, ..]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>weights</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>axis</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>theano.tensor.TensorVariable</em></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -279,12 +445,37 @@ Resulting DF is returned.</p>
 <dd><p>Computes a linear convolution of log(tensor) by weights, returning exp(conv_res).</p>
 <p>Can be also seen as geometrical convolution.
 The result is res[.., i, ..] = w[0] * res[.., i, ..]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>weights</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>axis</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>theano.tensor.TensorVariable</em></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="epimodel.pymc3_models.utils.shift_right">
 <code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">shift_right</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">dist</span></em>, <em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">pad</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.shift_right" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the signal shifted by dist along given axis, padded by <cite>pad</cite>.</p>
+<dd><p>Return the signal shifted right by dist along given axis, padded by <cite>pad</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>dist</strong> (<em>int</em>)</p></li>
+<li><p><strong>axis</strong> (<em>int</em>)</p></li>
+<li><p><strong>pad</strong> (<em>numeric, optional</em>) – Padding value (default: 0.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>theano.tensor.TensorVariable</em></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -301,7 +492,7 @@ The result is res[.., i, ..] = w[0] * res[.., i, ..]</p>
         <a href="imports.html" class="btn btn-neutral float-right" title="Imports (epimodel.imports)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to epimodel’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="reference.html" class="btn btn-neutral float-left" title="Epimodel Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

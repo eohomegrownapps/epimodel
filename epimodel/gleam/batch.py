@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 class Batch:
     """
-    Represents one batch of GLEAM simulations.
+    Represents one batch of GLEaM simulations.
 
     Batch metadata is held in a HDF5 file with pandas tables:
     
@@ -127,7 +127,7 @@ class Batch:
         overwrite=False,
     ):
         """
-        Import simulation result data from GLEAMViz data/sims dir into the HDF5 file.
+        Import simulation result data from GLEaMViz data/sims dir into the HDF5 file.
 
         Parameters
         ----------
@@ -135,9 +135,9 @@ class Batch:
             The data/sims directory to import from
         regions : epimodel.regions.RegionDataset
         allow_unfinished : bool, optional
-            Allow unfinished GLEAMViz experiments (default: `False`) (?)
+            Allow unfinished GLEaMViz experiments (default: `False`) (?)
         resample : DateOffset, Timedelta or str, optional
-            Rule for resampling the GLEAMViz time-series data (see Pandas `df.resample`) (default: None)
+            Rule for resampling the GLEaMViz time-series data (see Pandas `df.resample`) (default: None)
         overwrite : bool, optional
             Overwrite existing `new_fraction` table (default: `False`)
         """
