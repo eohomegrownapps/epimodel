@@ -193,7 +193,9 @@ class Loader:
         takes (so long as there are <=4 of these).
 
         Sample output:
-        ::
+        
+        .. code-block::
+        
             Countermeasures                            min   .. mean  .. max
              0 Masks over 60                              0.000 .. 0.017 .. 1.000  {0.0, 1.0}
              1 Asymptomatic contact isolation             0.000 .. 0.118 .. 1.000  {0.0, 1.0}
@@ -206,6 +208,7 @@ class Loader:
              8 General curfew - permissive                0.000 .. 0.178 .. 1.000  {0.0, 1.0}
              9 General curfew - strict                    0.000 .. 0.128 .. 1.000  {0.0, 1.0}
             10 Healthcare specialisation over 0.2         0.000 .. 0.059 .. 1.000  {0.0, 1.0}
+        
         """
 
         print("\nCountermeasures                            min   .. mean  .. max")

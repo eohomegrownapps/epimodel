@@ -538,24 +538,20 @@ Default: “”</p></li>
 <dd><p>Plots a forest plot (90% credible interval) of the <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code>
 variable (i.e. the reduction to growth rate R0 of each of the
 countermeasures when active)</p>
-<dl>
-<dt>::</dt><dd><dl class="simple">
-<dt>pm.forestplot(</dt><dd><p>self.trace, var_names=[self.prefix + “CMReduction”], credible_interval=0.9</p>
-</dd>
-</dl>
-<p>)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">forestplot</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">trace</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;CMReduction&quot;</span><span class="p">],</span> <span class="n">credible_interval</span><span class="o">=</span><span class="mf">0.9</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces">
 <code class="sig-name descname">plot_traces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots traces of selected variables with <code class="docutils literal notranslate"><span class="pre">pm.traceplot</span></code>.</p>
-<dl class="simple">
-<dt>::</dt><dd><p>pm.traceplot(self.trace, var_names=list(self.plot_trace_vars))</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trace</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_trace_vars</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -600,10 +596,9 @@ for the trace of a given variable.</p>
 <dd><p>Performs Bayesian inference on the model.</p>
 <p>Calls <code class="docutils literal notranslate"><span class="pre">check_test_point()</span></code> on the model, printing the results,
 then runs <code class="docutils literal notranslate"><span class="pre">pm.sample</span></code> on the model:</p>
-<dl class="simple">
-<dt>::</dt><dd><p>pm.sample(N, chains=chains, cores=cores, init=”adapt_diag”)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="n">chains</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="n">cores</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;adapt_diag&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>storing the resulting trace in <cite>self.trace</cite>.</p>
 </dd></dl>
 

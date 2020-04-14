@@ -66,7 +66,9 @@ class BaseCMModel(Model):
         Create a lognorm variable, adding it to self as attribute.
 
         Variable will be created using
-        ::
+        
+        .. code-block::
+
             pm.Lognormal(self.prefix + name, T.log(mean), log_var, **kwargs)
 
         Parameters
@@ -107,7 +109,9 @@ class BaseCMModel(Model):
         Create a deterministic variable, adding it to self as attribute.
 
         Variable will be created using
-        ::
+        
+        .. code-block::
+
             pm.Deterministic(self.prefix + name, exp)
 
         Parameters
@@ -148,7 +152,8 @@ class BaseCMModel(Model):
         """
         Plots traces of selected variables with ``pm.traceplot``.
 
-        ::
+        .. code-block::
+
             pm.traceplot(self.trace, var_names=list(self.plot_trace_vars))
         """
         assert self.trace is not None
@@ -160,7 +165,8 @@ class BaseCMModel(Model):
         variable (i.e. the reduction to growth rate R0 of each of the
         countermeasures when active)
         
-        ::
+        .. code-block::
+
             pm.forestplot(
                 self.trace, var_names=[self.prefix + "CMReduction"], credible_interval=0.9
             )
@@ -178,7 +184,9 @@ class BaseCMModel(Model):
         -- currently mean, standard deviation and (0.05th, 0.95th) quantiles.
         
         Example (TODO: this does not include std dev (?) )
-        ::
+
+        .. code-block::
+
              0 Masks over 60                            CMReduction_cumul 0.985 (0.947 .. 1)
              1 Asymptomatic contact isolation           CMReduction_cumul 0.926 (0.886 .. 0.961)
              2 Gatherings limited to 10                 CMReduction_cumul 0.911 (0.887 .. 0.934)
@@ -221,7 +229,8 @@ class BaseCMModel(Model):
         Calls ``check_test_point()`` on the model, printing the results,
         then runs ``pm.sample`` on the model:
 
-        ::
+        .. code-block::
+        
             pm.sample(N, chains=chains, cores=cores, init="adapt_diag")
         
         storing the resulting trace in `self.trace`.
