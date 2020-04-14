@@ -220,6 +220,23 @@ class Loader:
     def create_delay_dist(self, delay_mean):
         """
         Generate and return CMDelayProb and CMDelayCut.
+
+        This distribution models the delay between activation of a 
+        countermeasure and its observed effect.
+
+        Parameters
+        ----------
+        delay_mean : float
+            The mean for the Poisson distribution modelling delay
+
+        Returns
+        -------
+        (CMDelayProb, CMDelayCut)
+        CMDelayProb : np.array
+            Values of the distribution (shortened to have >99% of the mass)
+        CMDelayCut : n
+            Index at which to cut off first days to have 90% of 
+            pre-existing intervention effect (?)
         """
         # Poisson distribution
         CMDelayProb = np.array(
@@ -241,6 +258,16 @@ class Loader:
         return CMDelayProb, CMDelayCut
 
     def plot_cm_correlation(self, delay_mean=7.0):
+        """
+        Plots correlation between countermeasures as a heatmap.
+
+        Parameters
+        ----------
+        delay_mean : float, optional
+            The mean for the delay distribution (modelling the delay
+            between activation of a countermeasure and its observed
+            effect) -- default: 7.0
+        """
         delay_dist, _ = self.create_delay_dist(delay_mean)
         dcs = {}
         for cmi, cm in enumerate(self.CMs):
