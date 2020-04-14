@@ -1,3 +1,6 @@
+"""
+Utility functions for handling CSVs.
+"""
 import re
 
 import dateutil

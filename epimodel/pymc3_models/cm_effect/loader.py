@@ -28,7 +28,7 @@ class Loader:
     rds : epimodel.regions.RegionDataset
         For region data
     johns_hopkins : pandas.DataFrame
-        Johns Hopkins data, indexed by `MultiIndex` (code and date) (see :module:`epimodel.imports.johns_hopkins` for more details)
+        Johns Hopkins data, indexed by `MultiIndex` (code and date) (see :mod:`epimodel.imports.johns_hopkins` for more details)
     features : pandas.DataFrame
         Countermeasures features data, indexed by `MultiIndex` (code and date). Columns 
         are labelled by feature; each cell indicates [(?) whether or not the feature
@@ -67,6 +67,23 @@ class Loader:
         which countermeasures are active and to what extent (shape is 
         ``(len(Rs), len(CMs), len(Ds))``). [Values should be between 0 and 1 
         (?)]
+    
+    Parameters
+    ----------
+    start : str or datetime-like
+        Left bound for date range
+    end : str or datetime-like
+        Right bound for date range
+    regions : list[str]
+        List of region codes to use in the model
+    CMs : list[str]
+        List of names of countermeasures (TODO: document all possible countermeasures) (?)
+    data_dir : str or pathlib.PurePath, optional
+        Path of the directory storing CSV data files (``regions.csv``, ``johns-hopkins.csv``
+        and the active countermeasures file). Default: ``<parent directory of module>/data``
+    active_cm_file : str, optional
+        Filename of countermeasure features CSV file. Default: ``countermeasures-model-0to1.csv``
+
     """
     def __init__(
         self,
@@ -206,11 +223,6 @@ class Loader:
         """
         Filter and return list of region codes.
         (Deprecated? Doesn't seem to be used.) (?)
-        
-        Parameters
-        ----------
-        regions : list
-
         """
         res = []
         for rc in regions:
@@ -231,9 +243,19 @@ def split_0to1_features(features_0to1, exclusive=False):
     """
     Split joined features in model-0to1 into separate bool features.
 
-    If `exclusive`, only one of a chain of features is activated.
-    Otherwise all up to the active level are active.
-    Resulting DF is returned.
+    TODO: Document some of these measures in another page (?)
+    
+    Parameters
+    ----------
+    features_0to1 : pandas.DataFrame
+    exclusive : bool, optional
+        If `exclusive`, only one of a chain of features is activated. 
+        Otherwise all up to the active level are active.
+        Default: false
+    
+    Returns
+    -------
+    pandas.DataFrame
     """
     fs = {}
     f01 = features_0to1

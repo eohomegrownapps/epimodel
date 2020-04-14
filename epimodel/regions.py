@@ -122,6 +122,10 @@ class Region:
             return f"{self.Name}, {self.SubdivisionCode}"
         return self.Name
 
+    def __getstate__(self):
+        # Fixes issue where pymc3 attempts to pickle Region objects
+        pass
+
     def __getattr__(self, name):
         return self.__getitem__(name)
 

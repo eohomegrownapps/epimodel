@@ -1,3 +1,7 @@
+"""
+Utility functions for countermeasures modelling.
+"""
+
 import theano.tensor as T
 import numpy as np
 
