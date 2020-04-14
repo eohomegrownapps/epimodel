@@ -1,4 +1,0 @@
-Epimodel Data Sources
-====================================
-
-TODO

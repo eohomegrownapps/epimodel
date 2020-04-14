@@ -258,11 +258,17 @@ and the active countermeasures file). Default: <code class="docutils literal not
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions" title="epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_regions</span></code></a>(regions[, min_feature_sum, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.create_delay_dist" title="epimodel.pymc3_models.cm_effect.loader.Loader.create_delay_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_delay_dist</span></code></a>(delay_mean)</p></td>
+<td><p>Generate and return CMDelayProb and CMDelayCut.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions" title="epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_regions</span></code></a>(regions[, min_feature_sum, …])</p></td>
 <td><p>Filter and return list of region codes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs" title="epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ActiveCMs</span></code></a>(start, end)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs" title="epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ActiveCMs</span></code></a>(start, end)</p></td>
 <td><p>Return active countermeasures within a range of dates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.plot_cm_correlation" title="epimodel.pymc3_models.cm_effect.loader.Loader.plot_cm_correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cm_correlation</span></code></a>([delay_mean])</p></td>
+<td><p>Plots correlation between countermeasures as a heatmap.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.print_stats" title="epimodel.pymc3_models.cm_effect.loader.Loader.print_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_stats</span></code></a>()</p></td>
 <td><p>Print data stats, plot graphs, …</p></td>
@@ -272,6 +278,28 @@ and the active countermeasures file). Default: <code class="docutils literal not
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.create_delay_dist">
+<code class="sig-name descname">create_delay_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delay_mean</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.create_delay_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate and return CMDelayProb and CMDelayCut.</p>
+<p>This distribution models the delay between activation of a
+countermeasure and its observed effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>delay_mean</strong> (<em>float</em>) – The mean for the Poisson distribution modelling delay</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>(CMDelayProb, CMDelayCut)</em></p></li>
+<li><p><strong>CMDelayProb</strong> (<em>np.array</em>) – Values of the distribution (shortened to have &gt;99% of the mass)</p></li>
+<li><p><strong>CMDelayCut</strong> (<em>n</em>) – Index at which to cut off first days to have 90% of
+pre-existing intervention effect (?)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions">
 <code class="sig-name descname">filter_regions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">regions</span></em>, <em class="sig-param"><span class="n">min_feature_sum</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">min_final_jh</span><span class="o">=</span><span class="default_value">400</span></em>, <em class="sig-param"><span class="n">jh_col</span><span class="o">=</span><span class="default_value">'Confirmed'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions" title="Permalink to this definition">¶</a></dt>
@@ -295,6 +323,19 @@ and the active countermeasures file). Default: <code class="docutils literal not
 which countermeasures are active and to what extent (shape is
 <code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(CMs),</span> <span class="pre">len(Ds))</span></code>). [Values should be between 0 and 1
 (?)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.plot_cm_correlation">
+<code class="sig-name descname">plot_cm_correlation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.plot_cm_correlation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots correlation between countermeasures as a heatmap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>delay_mean</strong> (<em>float, optional</em>) – The mean for the delay distribution (modelling the delay
+between activation of a countermeasure and its observed
+effect) – default: 7.0</p>
 </dd>
 </dl>
 </dd></dl>
@@ -425,22 +466,19 @@ Default: “”</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogNorm</span></code></a>(name, mean, log_var[, plot_trace, …])</p></td>
 <td><p>Create a lognorm variable, adding it to self as attribute.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.create_delay_dist" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.create_delay_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_delay_dist</span></code></a>(delay_mean)</p></td>
-<td><p>Generate and return CMDelayProb and CMDelayCut.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_CMReduction</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_CMReduction</span></code></a>()</p></td>
 <td><p>Plots a forest plot (90% credible interval) of the <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code> variable (i.e.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_traces</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_traces</span></code></a>()</p></td>
 <td><p>Plots traces of selected variables with <code class="docutils literal notranslate"><span class="pre">pm.traceplot</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_CMReduction</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_CMReduction</span></code></a>()</p></td>
 <td><p>Prints statistics on the traces of <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code> (i.e.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_var_per_country</span></code></a>(varname)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_var_per_country</span></code></a>(varname)</p></td>
 <td><p>For each region, prints array statistics (using <a class="reference internal" href="#epimodel.pymc3_models.utils.array_stats" title="epimodel.pymc3_models.utils.array_stats"><code class="xref py py-meth docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils.array_stats()</span></code></a>) for the trace of a given variable.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.run" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>(N[, chains, cores])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.run" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>(N[, chains, cores])</p></td>
 <td><p>Performs Bayesian inference on the model.</p></td>
 </tr>
 </tbody>
@@ -492,12 +530,6 @@ Default: “”</p></li>
 <dd class="field-even"><p><em>pymc3.distributions.continuous.Lognormal</em></p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.create_delay_dist">
-<code class="sig-name descname">create_delay_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delay_mean</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.create_delay_dist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate and return CMDelayProb and CMDelayCut.</p>
 </dd></dl>
 
 <dl class="py method">

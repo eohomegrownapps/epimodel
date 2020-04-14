@@ -1,4 +1,0 @@
-Modelling with Epimodel
-====================================
-
-TODO
