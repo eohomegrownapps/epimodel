@@ -1,8 +1,24 @@
+"""
+Utility functions for countermeasures modelling.
+"""
 import theano.tensor as T
 import numpy as np
 
 
 def array_stats(d):
+    """
+    Compute the mean, standard deviation and (0.05th, 0.95th) quantiles of an array.
+    
+    Parameters
+    ----------
+    d : Array of numeric values
+    
+    Returns
+    -------
+    A string with the following format:
+        ``<mean> std=<standard deviation> (<0.05th quantile> .. <0.95th quantile>)``
+    e.g. ``3 std=1.414 (1.2 .. 4.8)``
+    """
     d = np.array(d)
     return (
         f"{d.mean():.3g} std={d.std():.3f} "
@@ -12,7 +28,19 @@ def array_stats(d):
 
 def shift_right(t, dist, axis, pad=0.0):
     """
-    Return the signal shifted by dist along given axis, padded by `pad`.
+    Return the signal shifted right by dist along given axis, padded by `pad`.
+    
+    Parameters
+    ----------
+    t : Array of numeric values
+    dist : int
+    axis : int
+    pad : numeric, optional
+        Padding value (default: 0.0)
+    
+    Returns
+    -------
+    theano.tensor.TensorVariable
     """
     assert dist >= 0
     t = T.as_tensor(t)
@@ -36,6 +64,16 @@ def convolution(t, weights, axis):
     Computes a linear convolution of tensor by weights.
     
     The result is res[.., i, ..] = w[0] * res[.., i, ..]
+
+    Parameters
+    ----------
+    t : Array of numeric values
+    weights : Array of numeric values
+    axis : int
+
+    Returns
+    -------
+    theano.tensor.TensorVariable
     """
     t = T.as_tensor(t)
     res = T.zeros_like(t)
@@ -50,6 +88,16 @@ def geom_convolution(t, weights, axis):
     
     Can be also seen as geometrical convolution.
     The result is res[.., i, ..] = w[0] * res[.., i, ..]
+
+    Parameters
+    ----------
+    t : Array of numeric values
+    weights : Array of numeric values
+    axis : int
+    
+    Returns
+    -------
+    theano.tensor.TensorVariable
     """
     t = T.as_tensor(t)
     res = T.ones_like(t)

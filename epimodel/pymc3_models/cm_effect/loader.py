@@ -12,6 +12,78 @@ log = logging.getLogger(__name__)
 
 
 class Loader:
+    """
+    Loader for countermeasures data.
+    
+    Attributes
+    ----------
+    data_dir : str
+        Directory in which data is stored
+    Ds : pandas.DateTimeIndex
+        Date range from which to extract data
+    CMs : list[str]
+        List of names of countermeasures (TODO: document all possible countermeasures) (?)
+    Rs : list[str]
+        List of region codes to use in the model
+    rds : epimodel.regions.RegionDataset
+        For region data
+    johns_hopkins : pandas.DataFrame
+        Johns Hopkins data, indexed by `MultiIndex` (code and date) (see :mod:`epimodel.imports.johns_hopkins` for more details)
+    features : pandas.DataFrame
+        Countermeasures features data, indexed by `MultiIndex` (code and date). Columns 
+        are labelled by feature; each cell indicates [(?) whether or not the feature
+        is active in the country at that time - TODO: clarify this]
+    sel_features : pandas.DataFrame
+        The subset of data from `features` that is selected (i.e. regions in
+        `Rs`, countermeasures in `CMs` and dates within the date range `Ds`)
+    TheanoType : str
+        Data type to store numerical data (default: "float64")
+    Confirmed : numpy.ma.masked_array
+        Masked array containing Johns Hopkins data for confirmed cases
+        indexed by region and day (shape is ``(len(Rs), len(Ds))``),
+        with all values below `ConfirmedCutoff` marked as invalid / masked.
+    ConfirmedCutoff : float
+        Cut-off below which values are marked as invalid (default is 10.0)
+    Deaths : numpy.ma.masked_array
+        Masked array containing Johns Hopkins data for deaths
+        indexed by region and day (shape is ``(len(Rs), len(Ds))``),
+        with all values below `DeathsCutoff` marked as invalid / masked.
+    DeathsCutoff : float
+        Cut-off below which values are marked as invalid (default is 10.0)
+    Active : numpy.ma.masked_array
+        Masked array containing Johns Hopkins data for active cases
+        indexed by region and day (shape is ``(len(Rs), len(Ds))``),
+        with all values below `ActiveCutoff` marked as invalid / masked.
+    ActiveCutoff : float
+        Cut-off below which values are marked as invalid (default is 10.0)
+    Recovered : numpy.ma.masked_array
+        Masked array containing Johns Hopkins data for confirmed cases
+        indexed by region and day (shape is ``(len(Rs), len(Ds))``),
+        with all values below `RecoveredCutoff` marked as invalid / masked.
+    RecoveredCutoff : float
+        Cut-off below which values are marked as invalid (default is 10.0)
+    ActiveCMs : numpy.ndarray
+        Array indexed by region, countermeasure and day, indicating 
+        which countermeasures are active and to what extent (shape is 
+        ``(len(Rs), len(CMs), len(Ds))``). [Values should be between 0 and 1 
+        (?)]
+    
+    Parameters
+    ----------
+    start : str or datetime-like
+        Left bound for date range
+    end : str or datetime-like
+        Right bound for date range
+    regions : list[str]
+        List of region codes to use in the model
+    CMs : list[str]
+        List of names of countermeasures (TODO: document all possible countermeasures) (?)
+    data_dir : str or pathlib.PurePath, optional
+        Path of the directory storing CSV data files (``regions.csv``, ``johns-hopkins.csv``
+        and the active countermeasures file). Default: ``<parent directory of module>/data``
+    active_cm_file : str, optional
+        Filename of countermeasure features CSV file. Default: ``countermeasures-model-0to1.csv``
+    """
     def __init__(self, start, end, regions, features, data_dir=None):
         if data_dir is None:
             data_dir = Path(__file__).parents[3] / "data"
@@ -112,6 +184,24 @@ class Loader:
         self.ActiveCMs = self.get_ActiveCMs(self.Ds[0], self.Ds[-1])
 
     def get_ActiveCMs(self, start, end):
+        """
+        Return active countermeasures within a range of dates.
+        
+        Parameters
+        ----------
+        start : str or datetime-like
+            Left bound for date range
+        end : str or datetime-like
+            Right bound for date range
+        
+        Returns
+        -------
+        np.ndarray
+            Array indexed by region, countermeasure and day, indicating 
+            which countermeasures are active and to what extent (shape is 
+            ``(len(Rs), len(CMs), len(Ds))``). [Values should be between 0 and 1 
+            (?)]
+        """
         local_Ds = pd.date_range(start=start, end=end, tz="utc")
         self.sel_features = self.features.loc[self.Rs, self.CMs]
         if "Mask wearing" in self.sel_features.columns:
@@ -124,7 +214,30 @@ class Loader:
         return ActiveCMs.astype(self.TheanoType)
 
     def print_stats(self):
-        """Print data stats, plot graphs, ..."""
+        """
+        Print data stats, plot graphs, ... TODO: add more
+
+        Currently calculates min / mean / max of feature values for each selected
+        countermeasure, along with a list of the unique values each countermeasure
+        takes (so long as there are <=4 of these).
+        Sample output:
+        
+        .. code-block::
+        
+            Countermeasures                            min   .. mean  .. max
+             0 Masks over 60                              0.000 .. 0.017 .. 1.000  {0.0, 1.0}
+             1 Asymptomatic contact isolation             0.000 .. 0.118 .. 1.000  {0.0, 1.0}
+             2 Gatherings limited to 10                   0.000 .. 0.140 .. 1.000  {0.0, 1.0}
+             3 Gatherings limited to 100                  0.000 .. 0.214 .. 1.000  {0.0, 1.0}
+             4 Gatherings limited to 1000                 0.000 .. 0.259 .. 1.000  {0.0, 1.0}
+             5 Business suspended - some                  0.000 .. 0.290 .. 1.000  {0.0, 1.0}
+             6 Business suspended - many                  0.000 .. 0.203 .. 1.000  {0.0, 1.0}
+             7 Schools and universities closed            0.000 .. 0.366 .. 1.000  {0.0, 1.0}
+             8 General curfew - permissive                0.000 .. 0.178 .. 1.000  {0.0, 1.0}
+             9 General curfew - strict                    0.000 .. 0.128 .. 1.000  {0.0, 1.0}
+            10 Healthcare specialisation over 0.2         0.000 .. 0.059 .. 1.000  {0.0, 1.0}
+        
+        """
 
         print("\nCountermeasures                            min   .. mean  .. max")
         for i, cm in enumerate(self.CMs):

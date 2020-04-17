@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Models (epimodel.pymc3_models) &mdash; epimodel  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Imports (epimodel.imports)" href="imports.html" />
+    <link rel="prev" title="Epimodel Reference" href="reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> epimodel
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling with Epimodel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Epimodel Data Sources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Epimodel Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#countermeasures-epimodel-pymc3-models-cm-effect">Countermeasures (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect</span></code>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-epimodel.pymc3_models.cm_effect.loader">Loader (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.loader</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-epimodel.pymc3_models.cm_effect.models">Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.models</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-epimodel.pymc3_models.utils">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="imports.html">Imports (<code class="docutils literal notranslate"><span class="pre">epimodel.imports</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exports.html">Exports (<code class="docutils literal notranslate"><span class="pre">epimodel.exports</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gleam.html">Handling GLEaMViz records (<code class="docutils literal notranslate"><span class="pre">epimodel.gleam</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="one-shots.html">One-Shots (<code class="docutils literal notranslate"><span class="pre">epimodel.oneshots</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regions.html">Regions (<code class="docutils literal notranslate"><span class="pre">epimodel.regions</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.utils</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">epimodel</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="reference.html">Epimodel Reference</a> &raquo;</li>
+        
+      <li>Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="models-epimodel-pymc3-models">
+<h1>Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models</span></code>)<a class="headerlink" href="#models-epimodel-pymc3-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="countermeasures-epimodel-pymc3-models-cm-effect">
+<h2>Countermeasures (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect</span></code>)<a class="headerlink" href="#countermeasures-epimodel-pymc3-models-cm-effect" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-epimodel.pymc3_models.cm_effect.loader">
+<span id="loader-epimodel-pymc3-models-cm-effect-loader"></span><h3>Loader (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.loader</span></code>)<a class="headerlink" href="#module-epimodel.pymc3_models.cm_effect.loader" title="Permalink to this headline">¶</a></h3>
+<p><strong>Classes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader" title="epimodel.pymc3_models.cm_effect.loader.Loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Loader</span></code></a>(start, end, regions, features[, data_dir])</p></td>
+<td><p>Loader for countermeasures data.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader">
+<em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.loader.</code><code class="sig-name descname">Loader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em>, <em class="sig-param"><span class="n">regions</span></em>, <em class="sig-param"><span class="n">features</span></em>, <em class="sig-param"><span class="n">data_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loader for countermeasures data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>str</em>) – Directory in which data is stored</p></li>
+<li><p><strong>Ds</strong> (<em>pandas.DateTimeIndex</em>) – Date range from which to extract data</p></li>
+<li><p><strong>CMs</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of names of countermeasures (TODO: document all possible countermeasures) (?)</p></li>
+<li><p><strong>Rs</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of region codes to use in the model</p></li>
+<li><p><strong>rds</strong> (<a class="reference internal" href="regions.html#epimodel.regions.RegionDataset" title="epimodel.regions.RegionDataset"><em>epimodel.regions.RegionDataset</em></a>) – For region data</p></li>
+<li><p><strong>johns_hopkins</strong> (<em>pandas.DataFrame</em>) – Johns Hopkins data, indexed by <cite>MultiIndex</cite> (code and date) (see <a class="reference internal" href="imports.html#module-epimodel.imports.johns_hopkins" title="epimodel.imports.johns_hopkins"><code class="xref py py-mod docutils literal notranslate"><span class="pre">epimodel.imports.johns_hopkins</span></code></a> for more details)</p></li>
+<li><p><strong>features</strong> (<em>pandas.DataFrame</em>) – Countermeasures features data, indexed by <cite>MultiIndex</cite> (code and date). Columns
+are labelled by feature; each cell indicates [(?) whether or not the feature
+is active in the country at that time - TODO: clarify this]</p></li>
+<li><p><strong>sel_features</strong> (<em>pandas.DataFrame</em>) – The subset of data from <cite>features</cite> that is selected (i.e. regions in
+<cite>Rs</cite>, countermeasures in <cite>CMs</cite> and dates within the date range <cite>Ds</cite>)</p></li>
+<li><p><strong>TheanoType</strong> (<em>str</em>) – Data type to store numerical data (default: “float64”)</p></li>
+<li><p><strong>Confirmed</strong> (<em>numpy.ma.masked_array</em>) – Masked array containing Johns Hopkins data for confirmed cases
+indexed by region and day (shape is <code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(Ds))</span></code>),
+with all values below <cite>ConfirmedCutoff</cite> marked as invalid / masked.</p></li>
+<li><p><strong>ConfirmedCutoff</strong> (<em>float</em>) – Cut-off below which values are marked as invalid (default is 10.0)</p></li>
+<li><p><strong>Deaths</strong> (<em>numpy.ma.masked_array</em>) – Masked array containing Johns Hopkins data for deaths
+indexed by region and day (shape is <code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(Ds))</span></code>),
+with all values below <cite>DeathsCutoff</cite> marked as invalid / masked.</p></li>
+<li><p><strong>DeathsCutoff</strong> (<em>float</em>) – Cut-off below which values are marked as invalid (default is 10.0)</p></li>
+<li><p><strong>Active</strong> (<em>numpy.ma.masked_array</em>) – Masked array containing Johns Hopkins data for active cases
+indexed by region and day (shape is <code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(Ds))</span></code>),
+with all values below <cite>ActiveCutoff</cite> marked as invalid / masked.</p></li>
+<li><p><strong>ActiveCutoff</strong> (<em>float</em>) – Cut-off below which values are marked as invalid (default is 10.0)</p></li>
+<li><p><strong>Recovered</strong> (<em>numpy.ma.masked_array</em>) – Masked array containing Johns Hopkins data for confirmed cases
+indexed by region and day (shape is <code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(Ds))</span></code>),
+with all values below <cite>RecoveredCutoff</cite> marked as invalid / masked.</p></li>
+<li><p><strong>RecoveredCutoff</strong> (<em>float</em>) – Cut-off below which values are marked as invalid (default is 10.0)</p></li>
+<li><p><strong>ActiveCMs</strong> (<em>numpy.ndarray</em>) – Array indexed by region, countermeasure and day, indicating
+which countermeasures are active and to what extent (shape is
+<code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(CMs),</span> <span class="pre">len(Ds))</span></code>). [Values should be between 0 and 1
+(?)]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>start</strong> (<em>str or datetime-like</em>) – Left bound for date range</p></li>
+<li><p><strong>end</strong> (<em>str or datetime-like</em>) – Right bound for date range</p></li>
+<li><p><strong>regions</strong> (<em>list[str]</em>) – List of region codes to use in the model</p></li>
+<li><p><strong>CMs</strong> (<em>list[str]</em>) – List of names of countermeasures (TODO: document all possible countermeasures) (?)</p></li>
+<li><p><strong>data_dir</strong> (<em>str or pathlib.PurePath, optional</em>) – Path of the directory storing CSV data files (<code class="docutils literal notranslate"><span class="pre">regions.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">johns-hopkins.csv</span></code>
+and the active countermeasures file). Default: <code class="docutils literal notranslate"><span class="pre">&lt;parent</span> <span class="pre">directory</span> <span class="pre">of</span> <span class="pre">module&gt;/data</span></code></p></li>
+<li><p><strong>active_cm_file</strong> (<em>str, optional</em>) – Filename of countermeasure features CSV file. Default: <code class="docutils literal notranslate"><span class="pre">countermeasures-model-0to1.csv</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions" title="epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_regions</span></code></a>(regions[, min_feature_sum, …])</p></td>
+<td><p>Filter and return list of region codes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs" title="epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_ActiveCMs</span></code></a>(start, end)</p></td>
+<td><p>Return active countermeasures within a range of dates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.print_stats" title="epimodel.pymc3_models.cm_effect.loader.Loader.print_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_stats</span></code></a>()</p></td>
+<td><p>Print data stats, plot graphs, …</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.split_0to1_features" title="epimodel.pymc3_models.cm_effect.loader.Loader.split_0to1_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_0to1_features</span></code></a>([exclusive])</p></td>
+<td><p>Split joined features in model-0to1 into separate bool features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.loader.Loader.update" title="epimodel.pymc3_models.cm_effect.loader.Loader.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>()</p></td>
+<td><p>(Re)compute the values used in the model after any parameter/region/etc changes.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions">
+<code class="sig-name descname">filter_regions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">regions</span></em>, <em class="sig-param"><span class="n">min_feature_sum</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">min_final_jh</span><span class="o">=</span><span class="default_value">400</span></em>, <em class="sig-param"><span class="n">jh_col</span><span class="o">=</span><span class="default_value">'Confirmed'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.filter_regions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter and return list of region codes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs">
+<code class="sig-name descname">get_ActiveCMs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.get_ActiveCMs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return active countermeasures within a range of dates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>str or datetime-like</em>) – Left bound for date range</p></li>
+<li><p><strong>end</strong> (<em>str or datetime-like</em>) – Right bound for date range</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>np.ndarray</em> – Array indexed by region, countermeasure and day, indicating
+which countermeasures are active and to what extent (shape is
+<code class="docutils literal notranslate"><span class="pre">(len(Rs),</span> <span class="pre">len(CMs),</span> <span class="pre">len(Ds))</span></code>). [Values should be between 0 and 1
+(?)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.print_stats">
+<code class="sig-name descname">print_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.print_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print data stats, plot graphs, … TODO: add more</p>
+<p>Currently calculates min / mean / max of feature values for each selected
+countermeasure, along with a list of the unique values each countermeasure
+takes (so long as there are &lt;=4 of these).
+Sample output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Countermeasures</span>                            <span class="nb">min</span>   <span class="o">..</span> <span class="n">mean</span>  <span class="o">..</span> <span class="nb">max</span>
+ <span class="mi">0</span> <span class="n">Masks</span> <span class="n">over</span> <span class="mi">60</span>                              <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.017</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">1</span> <span class="n">Asymptomatic</span> <span class="n">contact</span> <span class="n">isolation</span>             <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.118</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">2</span> <span class="n">Gatherings</span> <span class="n">limited</span> <span class="n">to</span> <span class="mi">10</span>                   <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.140</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">3</span> <span class="n">Gatherings</span> <span class="n">limited</span> <span class="n">to</span> <span class="mi">100</span>                  <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.214</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">4</span> <span class="n">Gatherings</span> <span class="n">limited</span> <span class="n">to</span> <span class="mi">1000</span>                 <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.259</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">5</span> <span class="n">Business</span> <span class="n">suspended</span> <span class="o">-</span> <span class="n">some</span>                  <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.290</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">6</span> <span class="n">Business</span> <span class="n">suspended</span> <span class="o">-</span> <span class="n">many</span>                  <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.203</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">7</span> <span class="n">Schools</span> <span class="ow">and</span> <span class="n">universities</span> <span class="n">closed</span>            <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.366</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">8</span> <span class="n">General</span> <span class="n">curfew</span> <span class="o">-</span> <span class="n">permissive</span>                <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.178</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+ <span class="mi">9</span> <span class="n">General</span> <span class="n">curfew</span> <span class="o">-</span> <span class="n">strict</span>                    <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.128</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+<span class="mi">10</span> <span class="n">Healthcare</span> <span class="n">specialisation</span> <span class="n">over</span> <span class="mf">0.2</span>         <span class="mf">0.000</span> <span class="o">..</span> <span class="mf">0.059</span> <span class="o">..</span> <span class="mf">1.000</span>  <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.split_0to1_features">
+<code class="sig-name descname">split_0to1_features</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exclusive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.split_0to1_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split joined features in model-0to1 into separate bool features.</p>
+<p>Resulting DF is stored in <cite>self.features_split</cite> and returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.loader.Loader.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.loader.Loader.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Re)compute the values used in the model after any parameter/region/etc changes.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-epimodel.pymc3_models.cm_effect.models">
+<span id="models-epimodel-pymc3-models-cm-effect-models"></span><h3>Models (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.cm_effect.models</span></code>)<a class="headerlink" href="#module-epimodel.pymc3_models.cm_effect.models" title="Permalink to this headline">¶</a></h3>
+<p>Countermeasures models.
+TODO: Add some general description here.
+n.b. some entries taken from PyMC3 documentation</p>
+<p><strong>Classes</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseCMModel</span></code></a>(data[, model, name])</p></td>
+<td><p>Base class for building countermeasures models.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2" title="epimodel.pymc3_models.cm_effect.models.CMModelV2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMModelV2</span></code></a>(data[, delay_mean])</p></td>
+<td><p>CM effect model V2 (lognormal prior)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g" title="epimodel.pymc3_models.cm_effect.models.CMModelV2g"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CMModelV2g</span></code></a>(data[, delay_mean])</p></td>
+<td><p>CM effect model V2g (exp(-gamma) prior)</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel">
+<em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">BaseCMModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for building countermeasures models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>epimodel.pymc3_models.cm_effect.Loader</em>) – A <cite>Loader</cite> containing data to be fed to the model</p></li>
+<li><p><strong>plot_trace_vars</strong> (<em>set</em><em>[</em><em>str</em><em>]</em>) – The PyMC3 variables to be plot by <cite>plot_traces</cite></p></li>
+<li><p><strong>trace</strong> (<em>pymc3.backends.base.MultiTrace</em>) – The PyMC3 <cite>MultiTrace</cite> object containing the sampling values from
+the model.</p></li>
+<li><p><strong>nRs</strong> (<em>int</em>) – The number of regions in the model’s <cite>Loader</cite> (<code class="docutils literal notranslate"><span class="pre">len(d.Rs)</span></code>)</p></li>
+<li><p><strong>nDs</strong> (<em>int</em>) – The number of dates in the model’s <cite>Loader</cite> (<code class="docutils literal notranslate"><span class="pre">len(d.Ds)</span></code>)</p></li>
+<li><p><strong>nCMs</strong> (<em>int</em>) – The number of countermeasures in the model’s <cite>Loader</cite> (<code class="docutils literal notranslate"><span class="pre">len(d.CMs)</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>data</strong> (<em>epimodel.pymc3_models.cm_effect.Loader</em>) – A <cite>Loader</cite> containing data to be fed to the model</p></li>
+<li><p><strong>model</strong> (<em>pymc3.model.Model, optional</em>) – Instance of <cite>Model</cite> that is supposed to be a parent for the new
+instance. If None, context will be used. All variables defined
+within instance will be passed to the parent instance. So that
+‘nested’ model contributes to the variables and likelihood factors
+of parent model.
+Default: “”</p></li>
+<li><p><strong>name</strong> (<em>str, optional</em>) – The name that will be used as a prefix for the names of all
+random variables defined within the model
+Default: “”</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Det</span></code></a>(name, exp[, plot_trace])</p></td>
+<td><p>Create a deterministic variable, adding it to self as attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogNorm</span></code></a>(name, mean, log_var[, plot_trace, …])</p></td>
+<td><p>Create a lognorm variable, adding it to self as attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_CMReduction</span></code></a>()</p></td>
+<td><p>Plots a forest plot (90% credible interval) of the <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code> variable (i.e.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_traces</span></code></a>()</p></td>
+<td><p>Plots traces of selected variables with <code class="docutils literal notranslate"><span class="pre">pm.traceplot</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_CMReduction</span></code></a>()</p></td>
+<td><p>Prints statistics on the traces of <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code> (i.e.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_var_per_country</span></code></a>(varname)</p></td>
+<td><p>For each region, prints array statistics (using <a class="reference internal" href="#epimodel.pymc3_models.utils.array_stats" title="epimodel.pymc3_models.utils.array_stats"><code class="xref py py-meth docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils.array_stats()</span></code></a>) for the trace of a given variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.run" title="epimodel.pymc3_models.cm_effect.models.BaseCMModel.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>(N[, chains, cores])</p></td>
+<td><p>Performs Bayesian inference on the model.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det">
+<code class="sig-name descname">Det</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">exp</span></em>, <em class="sig-param"><span class="n">plot_trace</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.Det" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a deterministic variable, adding it to self as attribute.
+Variable will be created using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span> <span class="n">exp</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of variable</p></li>
+<li><p><strong>exp</strong> (<em>Theano variable</em>) – Value of variable</p></li>
+<li><p><strong>plot_trace</strong> (<em>bool</em>) – Whether or not to plot the trace of this variable in <cite>plot_traces</cite>
+(default: True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>pymc3.model.Deterministic</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm">
+<code class="sig-name descname">LogNorm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">mean</span></em>, <em class="sig-param"><span class="n">log_var</span></em>, <em class="sig-param"><span class="n">plot_trace</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">hyperprior</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.LogNorm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a lognorm variable, adding it to self as attribute.
+Variable will be created using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">Lognormal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mean</span><span class="p">),</span> <span class="n">log_var</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the variable</p></li>
+<li><p><strong>mean</strong> (<em>float</em>) – Location parameter</p></li>
+<li><p><strong>log_var</strong> (<em>float</em>) – Log of the variance (?)</p></li>
+<li><p><strong>plot_trace</strong> (<em>bool</em>) – Whether or not to plot the trace of this variable in <cite>plot_traces</cite>
+(default: True)</p></li>
+<li><p><strong>hyperprior</strong> – TODO</p></li>
+<li><p><strong>**kwargs</strong> – Arguments to pass to <cite>pm.Lognormal</cite> when creating the variable</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>pymc3.distributions.continuous.Lognormal</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction">
+<code class="sig-name descname">plot_CMReduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_CMReduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a forest plot (90% credible interval) of the <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code>
+variable (i.e. the reduction to growth rate R0 of each of the
+countermeasures when active)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">forestplot</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">trace</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;CMReduction&quot;</span><span class="p">],</span> <span class="n">credible_interval</span><span class="o">=</span><span class="mf">0.9</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces">
+<code class="sig-name descname">plot_traces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.plot_traces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots traces of selected variables with <code class="docutils literal notranslate"><span class="pre">pm.traceplot</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trace</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_trace_vars</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction">
+<code class="sig-name descname">print_CMReduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_CMReduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints statistics on the traces of <code class="docutils literal notranslate"><span class="pre">CMReduction</span></code> (i.e. the reduction to growth rate
+R0 of each of the countermeasures when active) for each of the different
+countermeasures (using <a class="reference internal" href="#epimodel.pymc3_models.utils.array_stats" title="epimodel.pymc3_models.utils.array_stats"><code class="xref py py-meth docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils.array_stats()</span></code></a>)
+– currently mean, standard deviation and (0.05th, 0.95th) quantiles.</p>
+<p>Example (TODO: this does not include std dev (?) )</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">0</span> <span class="n">Masks</span> <span class="n">over</span> <span class="mi">60</span>                            <span class="n">CMReduction_cumul</span> <span class="mf">0.985</span> <span class="p">(</span><span class="mf">0.947</span> <span class="o">..</span> <span class="mi">1</span><span class="p">)</span>
+ <span class="mi">1</span> <span class="n">Asymptomatic</span> <span class="n">contact</span> <span class="n">isolation</span>           <span class="n">CMReduction_cumul</span> <span class="mf">0.926</span> <span class="p">(</span><span class="mf">0.886</span> <span class="o">..</span> <span class="mf">0.961</span><span class="p">)</span>
+ <span class="mi">2</span> <span class="n">Gatherings</span> <span class="n">limited</span> <span class="n">to</span> <span class="mi">10</span>                 <span class="n">CMReduction_cumul</span> <span class="mf">0.911</span> <span class="p">(</span><span class="mf">0.887</span> <span class="o">..</span> <span class="mf">0.934</span><span class="p">)</span>
+ <span class="mi">3</span> <span class="n">Gatherings</span> <span class="n">limited</span> <span class="n">to</span> <span class="mi">100</span>                <span class="n">CMReduction_cumul</span> <span class="mf">0.916</span> <span class="p">(</span><span class="mf">0.893</span> <span class="o">..</span> <span class="mf">0.938</span><span class="p">)</span>
+ <span class="mi">4</span> <span class="n">Gatherings</span> <span class="n">limited</span> <span class="n">to</span> <span class="mi">1000</span>               <span class="n">CMReduction_cumul</span> <span class="mf">0.919</span> <span class="p">(</span><span class="mf">0.896</span> <span class="o">..</span> <span class="mf">0.942</span><span class="p">)</span>
+ <span class="mi">5</span> <span class="n">Business</span> <span class="n">suspended</span> <span class="o">-</span> <span class="n">some</span>                <span class="n">CMReduction_cumul</span> <span class="mf">0.96</span> <span class="p">(</span><span class="mf">0.934</span> <span class="o">..</span> <span class="mf">0.986</span><span class="p">)</span>
+ <span class="mi">6</span> <span class="n">Business</span> <span class="n">suspended</span> <span class="o">-</span> <span class="n">many</span>                <span class="n">CMReduction_cumul</span> <span class="mf">0.95</span> <span class="p">(</span><span class="mf">0.926</span> <span class="o">..</span> <span class="mf">0.974</span><span class="p">)</span>
+ <span class="mi">7</span> <span class="n">Schools</span> <span class="ow">and</span> <span class="n">universities</span> <span class="n">closed</span>          <span class="n">CMReduction_cumul</span> <span class="mf">0.933</span> <span class="p">(</span><span class="mf">0.911</span> <span class="o">..</span> <span class="mf">0.958</span><span class="p">)</span>
+ <span class="mi">8</span> <span class="n">General</span> <span class="n">curfew</span> <span class="o">-</span> <span class="n">permissive</span>              <span class="n">CMReduction_cumul</span> <span class="mf">0.99</span> <span class="p">(</span><span class="mf">0.966</span> <span class="o">..</span> <span class="mi">1</span><span class="p">)</span>
+ <span class="mi">9</span> <span class="n">General</span> <span class="n">curfew</span> <span class="o">-</span> <span class="n">strict</span>                  <span class="n">CMReduction_cumul</span> <span class="mf">0.952</span> <span class="p">(</span><span class="mf">0.93</span> <span class="o">..</span> <span class="mf">0.975</span><span class="p">)</span>
+<span class="mi">10</span> <span class="n">Healthcare</span> <span class="n">specialisation</span> <span class="n">over</span> <span class="mf">0.2</span>       <span class="n">CMReduction_cumul</span> <span class="mf">0.966</span> <span class="p">(</span><span class="mf">0.93</span> <span class="o">..</span> <span class="mf">0.997</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country">
+<code class="sig-name descname">print_var_per_country</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">varname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.print_var_per_country" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each region, prints array statistics (using
+<a class="reference internal" href="#epimodel.pymc3_models.utils.array_stats" title="epimodel.pymc3_models.utils.array_stats"><code class="xref py py-meth docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils.array_stats()</span></code></a>)
+for the trace of a given variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>varname</strong> (<em>str</em>) – The name of the variable to print array statistics for</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.BaseCMModel.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">cores</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.BaseCMModel.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs Bayesian inference on the model.
+Calls <code class="docutils literal notranslate"><span class="pre">check_test_point()</span></code> on the model, printing the results,
+then runs <code class="docutils literal notranslate"><span class="pre">pm.sample</span></code> on the model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="n">chains</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="n">cores</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;adapt_diag&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>storing the resulting trace in <cite>self.trace</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2">
+<em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">CMModelV2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2" title="Permalink to this definition">¶</a></dt>
+<dd><p>CM effect model V2 (lognormal prior)</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build" title="epimodel.pymc3_models.cm_effect.models.CMModelV2.build"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build</span></code></a>()</p></td>
+<td><p>Build the model variables.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build_reduction_var" title="epimodel.pymc3_models.cm_effect.models.CMModelV2.build_reduction_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_reduction_var</span></code></a>([scale])</p></td>
+<td><p>Less informative prior for CM reduction, allows values &gt;1.0</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2.build">
+<code class="sig-name descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the model variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2.build_reduction_var">
+<code class="sig-name descname">build_reduction_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2.build_reduction_var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Less informative prior for CM reduction, allows values &gt;1.0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2g">
+<em class="property">class </em><code class="sig-prename descclassname">epimodel.pymc3_models.cm_effect.models.</code><code class="sig-name descname">CMModelV2g</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">delay_mean</span><span class="o">=</span><span class="default_value">7.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g" title="Permalink to this definition">¶</a></dt>
+<dd><p>CM effect model V2g (exp(-gamma) prior)</p>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var" title="epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_reduction_var</span></code></a>([alpha, beta])</p></td>
+<td><p>CM reduction prior from ICL paper, only values &lt;=1.0</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var">
+<code class="sig-name descname">build_reduction_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.cm_effect.models.CMModelV2g.build_reduction_var" title="Permalink to this definition">¶</a></dt>
+<dd><p>CM reduction prior from ICL paper, only values &lt;=1.0</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-epimodel.pymc3_models.utils">
+<span id="utils-epimodel-pymc3-models-utils"></span><h2>Utils (<code class="docutils literal notranslate"><span class="pre">epimodel.pymc3_models.utils</span></code>)<a class="headerlink" href="#module-epimodel.pymc3_models.utils" title="Permalink to this headline">¶</a></h2>
+<p>Utility functions for countermeasures modelling.</p>
+<p><strong>Functions</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.array_stats" title="epimodel.pymc3_models.utils.array_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array_stats</span></code></a>(d)</p></td>
+<td><p>Compute the mean, standard deviation and (0.05th, 0.95th) quantiles of an array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.convolution" title="epimodel.pymc3_models.utils.convolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convolution</span></code></a>(t, weights, axis)</p></td>
+<td><p>Computes a linear convolution of tensor by weights.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.geom_convolution" title="epimodel.pymc3_models.utils.geom_convolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geom_convolution</span></code></a>(t, weights, axis)</p></td>
+<td><p>Computes a linear convolution of log(tensor) by weights, returning exp(conv_res).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#epimodel.pymc3_models.utils.shift_right" title="epimodel.pymc3_models.utils.shift_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift_right</span></code></a>(t, dist, axis[, pad])</p></td>
+<td><p>Return the signal shifted right by dist along given axis, padded by <cite>pad</cite>.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt id="epimodel.pymc3_models.utils.array_stats">
+<code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">array_stats</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.array_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the mean, standard deviation and (0.05th, 0.95th) quantiles of an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> (<em>Array of numeric values</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A string with the following format</em> – <code class="docutils literal notranslate"><span class="pre">&lt;mean&gt;</span> <span class="pre">std=&lt;standard</span> <span class="pre">deviation&gt;</span> <span class="pre">(&lt;0.05th</span> <span class="pre">quantile&gt;</span> <span class="pre">..</span> <span class="pre">&lt;0.95th</span> <span class="pre">quantile&gt;)</span></code></p></li>
+<li><p>e.g. <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">std=1.414</span> <span class="pre">(1.2</span> <span class="pre">..</span> <span class="pre">4.8)</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="epimodel.pymc3_models.utils.convolution">
+<code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">convolution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">weights</span></em>, <em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.convolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a linear convolution of tensor by weights.</p>
+<p>The result is res[.., i, ..] = w[0] * res[.., i, ..]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>weights</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>axis</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>theano.tensor.TensorVariable</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="epimodel.pymc3_models.utils.geom_convolution">
+<code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">geom_convolution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">weights</span></em>, <em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.geom_convolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a linear convolution of log(tensor) by weights, returning exp(conv_res).</p>
+<p>Can be also seen as geometrical convolution.
+The result is res[.., i, ..] = w[0] * res[.., i, ..]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>weights</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>axis</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>theano.tensor.TensorVariable</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="epimodel.pymc3_models.utils.shift_right">
+<code class="sig-prename descclassname">epimodel.pymc3_models.utils.</code><code class="sig-name descname">shift_right</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">dist</span></em>, <em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">pad</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#epimodel.pymc3_models.utils.shift_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the signal shifted right by dist along given axis, padded by <cite>pad</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>Array of numeric values</em>)</p></li>
+<li><p><strong>dist</strong> (<em>int</em>)</p></li>
+<li><p><strong>axis</strong> (<em>int</em>)</p></li>
+<li><p><strong>pad</strong> (<em>numeric, optional</em>) – Padding value (default: 0.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>theano.tensor.TensorVariable</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="imports.html" class="btn btn-neutral float-right" title="Imports (epimodel.imports)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="reference.html" class="btn btn-neutral float-left" title="Epimodel Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tomas Gavenciak
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -59,6 +59,25 @@ def import_johns_hopkins(rds: RegionDataset, prefix=None):
     Read a DataFrame of John Hopkins data from given directory or URL.
     
     By default loads data from CSSE github.
+
+    Parameters
+    ----------
+    rds : epimodel.regions.RegionDataset
+        RegionDataset to process region names
+    prefix : str, optional
+        Path to the directory containing Johns Hopkins CSV files. If `None`, then the following prefix will be used: 
+        https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/
+    
+    Returns
+    -------
+    pandas.DataFrame
+        Index:
+            MultiIndex (Code, date)
+        Columns:
+            - Name: Recovered (`NaN` for US states)
+            - Name: Confirmed
+            - Name: Deaths
+            - Name: Active (`NaN` for US states)
     """
     if prefix is None:
         prefix = GITHUB_PREFIX

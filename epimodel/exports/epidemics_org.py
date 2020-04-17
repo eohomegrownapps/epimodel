@@ -21,7 +21,25 @@ MAIN_DATA_FILENAME = "data-CHANNEL-v4.json"
 
 class WebExport:
     """
+    CHANGED
+
     Document holding one data export to web. Contains a subset of Regions.
+ 
+    Attributes
+    ----------
+    created : datetime.datetime
+        Set to the current UTC time
+    created_by : str
+        Set to ``{getpass.getuser()}@{socket.gethostname()}``
+    comment : str
+        An optional comment (default: `None`)
+    export_regions : dict[str, epimodel.exports.epidemics_org.WebExportRegion]
+        The Regions to export
+    
+    Parameters
+    ----------
+    comment : str, optional
+        An optional comment (default: `None`)
     """
 
     def __init__(self, date_resample: str, comment=None):
@@ -32,6 +50,22 @@ class WebExport:
         self.export_regions = {}
 
     def to_json(self):
+        """
+        Converts all regions in `self.export_regions` to JSON and returns a 
+        `dict` containing `WebExport` data.
+        
+        Returns a dict with the following structure
+        
+        ::
+            {
+                "created": <self.created>,
+                "created_by": <self.created_by>,
+                "comment": <self.comment>,
+                "regions": <regions>
+            }
+        
+        <regions>: A dict mapping region codes to JSON-encoded WebExportRegion data (``WebExportRegion.to_JSON()``)
+        """
         return {
             "created": self.created,
             "created_by": self.created_by,
@@ -52,6 +86,20 @@ class WebExport:
         un_age_dist: Optional[pd.DataFrame],
         traces_v3: Optional[pd.DataFrame],
     ):
+        """
+        CHANGED
+
+        Adds a region to the `WebExport`, and returns the region as a
+        `WebExportRegion` object.
+        
+        Parameters
+        ----------
+        region : epimodel.regions.Region
+        
+        Returns
+        -------
+        epimodel.exports.epidemics_org.WebExportRegion
+        """
         er = WebExportRegion(
             region,
             models,
@@ -67,6 +115,18 @@ class WebExport:
         return er
 
     def write(self, path, name=None):
+        """
+        Writes regions added to the object to JSON files in a specified
+        directory.
+    
+        Parameters
+        ----------
+        path : str
+            Path of directory containing the export directory 
+        name : str, optional
+            Name of export directory to create (if None, a name will be 
+            generated based on creation time of the `WebExport` object)
+        """
         if name is None:
             name = f"export-{self.created.isoformat()}"
             if self.comment:
@@ -88,6 +148,27 @@ class WebExport:
 
 
 class WebExportRegion:
+    """
+    CHANGED
+    
+    Stores region data for web export.
+    
+    Attributes
+    ----------
+    region : epimodel.regions.Region
+    data : dict
+        {name: anything}
+        Any per-region data. Large ones should go to data_ext.
+    data_ext : dict
+        {name: anything}
+        Extended data to be written in a separate per-region file
+    data_url : string
+        Relative URL of the extended data file, set on write
+    
+    Parameters
+    ----------
+    region : epimodel.regions.Region
+    """
     def __init__(
         self,
         region,
@@ -120,6 +201,9 @@ class WebExportRegion:
         un_age_dist: Optional[pd.DataFrame],
         traces_v3: Optional[pd.DataFrame],
     ) -> Dict[str, Dict[str, Any]]:
+        """
+        CHANGED TODO
+        """
         d = {}
 
         if rates is not None:
@@ -153,6 +237,9 @@ class WebExportRegion:
     def extract_models_data(
         models: pd.DataFrame, simulation_spec: pd.DataFrame
     ) -> Dict[str, Any]:
+        """
+        CHANGED TODO
+        """
         d = {
             "date_index": [x.isoformat() for x in models.index.levels[0]],
         }
@@ -171,6 +258,31 @@ class WebExportRegion:
         return {"models": d}
 
     def to_json(self):
+        """
+        Converts `WebExportRegion` to a JSON-friendly dict.
+        
+        Returns a dict with the following structure:
+        
+        ::
+            {
+                "data": <self.data>,
+                "data_url": <self.data_url>,
+                "Name": <self.region.DisplayName>,
+                "Population", <self.region.Population>
+                "Lat", ...
+                "Lon", ...
+                "OfficialName", ...
+                "Level", ...
+                "M49Code", ...
+                "ContinentCode", ...
+                "SubregionCode", ...
+                "CountryCode", ...
+                "CountryCodeISOa3", ...
+                "SubdivisionCode", ...
+            }
+
+        """
+
         d = {
             "data": self.data,
             "data_url": self.data_url,
@@ -206,7 +318,20 @@ def assert_valid_json(file):
 
 
 def upload_export(dir_to_export, gs_prefix, gs_url, channel="test"):
-    """The 'upload' subcommand"""
+    """
+    The 'upload' subcommand (uploads to Google Cloud Storage)
+    
+    Parameters
+    ----------
+    dir_to_export : str
+        The local directory to upload
+    gs_prefix : str
+        Google Cloud Storage directory prefix
+    gs_url : str
+        Google Cloud Storage URL
+    channel : str, optional
+        Channel to upload to (default: "test")
+    """
     CMD = [
         "gsutil",
         "-m",
@@ -241,6 +366,22 @@ def upload_export(dir_to_export, gs_prefix, gs_url, channel="test"):
 
 
 def types_to_json(obj):
+    """
+    Convert object to a JSON friendly type
+    
+    Parameters
+    ----------
+    obj : object
+    
+    Returns
+    -------
+    object
+    
+    Raises
+    ------
+    TypeError
+        If object is unserializable
+    """
     if isinstance(obj, (np.float16, np.float32, np.float64, np.float128)):
         return float(obj)
     if isinstance(obj, np.int64):

@@ -15,7 +15,26 @@ SUBST_NAMES = {"Macau": "China:Macau", "Hong Kong": "China:Hong Kong"}
 
 
 def import_countermeasures_csv(rds: RegionDataset, path):
-
+    """
+    Imports countermeasures data from a csv file (e.g.
+    https://github.com/epidemics/epimodel-covid-data/blob/master/sources/simplified_countermeasures_2020_03_28.csv)
+    into a pandas DataFrame.
+    
+    Parameters
+    ----------
+    rds : epimodel.regions.RegionDataset
+        RegionDataset to process region names
+    path : str
+        Path to the CSV file
+    
+    Returns
+    -------
+    pandas.DataFrame
+        Index:
+            MultiIndex (code, date)
+        Columns:
+            Countermeasure columns from the CSV
+    """
     skipped = set()
 
     def _lookup(name):
